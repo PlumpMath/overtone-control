@@ -9,12 +9,13 @@
   (:require [shadertone.tone :as t])
 )
 
-;; (def PORT 4242)
+(def PORT 4242)
 
-;; ; start a server and create a client to talk with it
-;; (def server (osc-server PORT))
-;; (def client (osc-client "localhost" PORT))
+; start a server and create a client to talk with it
+(def server (osc-server PORT))
+(def client (osc-client "localhost" PORT))
 
+(sc-osc-debug-off)
 
 
 (definst bar [freq 220] (saw 110))
@@ -28,7 +29,7 @@
        (saw (+ freq (* depth (sin-osc:kr rate))))))
 
 (tem 400 4 6 3)
-
+(tem 200 4 6 3)
 ;; (stop)
 
 (t/start "shaders/disco.glsl"
