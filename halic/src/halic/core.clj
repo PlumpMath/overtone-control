@@ -1,14 +1,13 @@
-(ns halic.core
-  (:gen-class)
-)
+;; (ns halic.core
+;;   (:gen-class)
+;; )
 
-(ns halic.overtone
+(ns halic.core
   (:use [overtone.live]
 ;;         [overtone.osc]
         )
-  )
-;;   (:require [shadertone.tone :as t])
-
+  (:require [shadertone.tone :as t])
+)
 
 ;; (def PORT 4242)
 
@@ -31,3 +30,7 @@
 (tem 400 4 6 3)
 
 ;; (stop)
+
+(t/start "shaders/disco.glsl"
+         :width 800 :height 800
+         :title "Quasicrystal")
