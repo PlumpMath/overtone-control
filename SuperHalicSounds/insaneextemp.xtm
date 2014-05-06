@@ -1,0 +1,8 @@
+(bind-func dsp
+  (lambda (in:SAMPLE time:i64 chan:i64 data:SAMPLE*)
+    (sin (/ (* STWOPI 440.0 (convert time SAMPLE))
+          44100.0))))
+
+; to let Extempore know that this function is the one 
+; it should call to get the output audio samples
+(dsp:set! dsp)
