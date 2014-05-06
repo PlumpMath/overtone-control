@@ -6,7 +6,9 @@
   (:use [overtone.live]
 ;;         [overtone.osc]
         )
-  (:require [shadertone.tone :as t])
+   (:require [quil.snippet :refer [defsnippet]]
+            [quil.core :refer :all])
+;;   (:require [shadertone.tone :as t])
 )
 
 (def PORT 4242)
