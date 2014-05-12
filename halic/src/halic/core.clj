@@ -21,11 +21,11 @@
 (def server (osc/osc-server PORT))
 ;; (def client (osc/osc-client "localhost" PORT))
 
-(live/sc-osc-debug-on)
+(live/sc-osc-debug-off)
 
 ;; (osc-send)
 ;; (osc-msg)
-(osc/osc-handle server "/test" (fn [msg] (println "MSG: " msg)))
+(osc/osc-handle server "/test" (fn [msg] (println "MSG: " get(msg :args) )))
 
 
 ;; (osc/osc-recv)
