@@ -8,7 +8,7 @@
   (:require [overtone.osc :as osc])
 ;;   (:require [quil.snippet :refer [defsnippet]])
   (:require [quil.core :refer :all])
-  (:require [quil.helpers.seqs :refer [range-incl]])
+  (:require [quil.helpers.seqs :refer [seq->stream range-incl]])
   (:require [quil.helpers.drawing :refer [line-join-points]])
 
 ;;   (:require [shadertone.tone :as t])
@@ -23,31 +23,50 @@
 
 (live/sc-osc-debug-off)
 
-;; (osc-send)
-;; (osc-msg)
-(osc/osc-handle server "/test" (fn [msg] (println "MSG: " get(msg :args) )))
+;; object defs
+
+(def cube1 (atom {:cubesize 10}))
+(reset! cube1 {:cubesize 100})
+(:cubesize @cube1)
+;; (:z @cube1)
+
+;; //osc handling
+
+;; (osc/osc-handle server "/test" (fn [msg] (println "MSG: " get(msg :args) )))
+;;   (osc/osc-handle server "/test" (fn [msg] (get (msg :args) )))
+
+;; (osc/osc-handle server "/test" (defn data [] (fn [msg] msg )))
+;;   (osc/osc-handle server "/test" (println (fn [msg] (get (msg :args) ) )))
 
 
-;; (osc/osc-recv)
-;; osc/osc-listen
+;;   (osc/osc-msg ["/test" :args])
+
+;; (osc/osc-handle server "/test" (fn [msg] (defn data [] (get(msg :args))) ))
+
+;; (osc/osc-handle server "/test" (fn [msg] ( data [msg]  )))
 
 
-(live/definst tem [freq 440 depth 10 rate 6 length 3]
-    (* 0.3
-       (live/line:kr 0.5 1 length live/FREE)
-       (live/saw (+ freq (* depth (live/sin-osc:kr rate))))))
+;; (osc/osc-handle server "/test" (fn [msg] (println "handler for /foo/bar: " msg)))
 
-;; (tem 400 4 6 3)
-;; (tem 200 4 6 3)
-;; (stop)
 
-;; (t/start "shaders/disco.glsl"
-;;          :width 800 :height 800
-;;          :title "Quasicrystal")
 
-(defn rand-y
-  [border-y]
-  (+ border-y (rand (- (height) (* 2 border-y)))))
+
+(osc/osc-handle server "/test" (fn [msg]
+                            (let [x (first (:args msg)) y (rest(:args msg))]
+                              (reset! cube1 {:cubesize x})
+                              )))
+
+
+
+(defn drawbox [cube]
+  (with-translation [0 1 0]
+    (box cube))
+
+  )
+
+
+
+
 
 (defn setup []
   (background 255)
@@ -56,24 +75,32 @@
   (stroke 0 500)
   (line 20 50 480 50)
   (stroke 2 50 70)
+;;   (set-state! :oscmsg (atom [0 0]))
+;;   (set-state! :cubesize 10)
+
+
+
 )
-
-
-(defn drawbox[cube]
-  (with-translation [10 0 0]
-    (box cube))
-  )
 
 
 (defn draw []
   (background 255)
   (camera 200 200 200 0 0 0 0 0 -1)
-  (drawbox 100)
-
-
-  (with-translation [0 100 0]
-    (box 70 10 50))
-  (stroke-weight 2)
+;;   (drawbox 10)
+;;   (with-translation [0 100 0]
+;;  (drawbox 10)
+;;   )
+;;   (with-translation [110 100 0]
+;;     (box 70 10 50))
+  (stroke-weight 20)
+;;   (let [[x y] @(state :oscmsg)]
+;;     (drawbox x)
+;;     (drawbox y)
+;;     )
+;;   (let [c (state [:cubesize])]
+;;     (drawbox c))
+(:cubesize @cube1)
+  (drawbox (:cubesize @cube1))
 ;;   (let [step      10
 ;;         border-x  30
 ;;         border-y  10
