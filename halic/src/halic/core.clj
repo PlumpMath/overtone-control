@@ -26,46 +26,35 @@
 ;; object defs
 
 (def cube1 (atom {:cubesize 10}))
-(reset! cube1 {:cubesize 100})
-(:cubesize @cube1)
-;; (:z @cube1)
-
-;; //osc handling
-
-;; (osc/osc-handle server "/test" (fn [msg] (println "MSG: " get(msg :args) )))
-;;   (osc/osc-handle server "/test" (fn [msg] (get (msg :args) )))
-
-;; (osc/osc-handle server "/test" (defn data [] (fn [msg] msg )))
-;;   (osc/osc-handle server "/test" (println (fn [msg] (get (msg :args) ) )))
-
-
-;;   (osc/osc-msg ["/test" :args])
-
-;; (osc/osc-handle server "/test" (fn [msg] (defn data [] (get(msg :args))) ))
-
-;; (osc/osc-handle server "/test" (fn [msg] ( data [msg]  )))
-
-
-;; (osc/osc-handle server "/test" (fn [msg] (println "handler for /foo/bar: " msg)))
-
-
+(def beat (atom {:beatnum 0}))
+;; (reset! cube1 {:cubesize 100})
+;; (:cubesize @cube1)
 
 
 (osc/osc-handle server "/test" (fn [msg]
-                            (let [x (first (:args msg)) y (rest(:args msg))]
+                            (let [x (first (:args msg)) y (first(rest(:args msg)))]
                               (reset! cube1 {:cubesize x})
+;;                               (println y)
                               )))
 
 
 
-(defn drawbox [cube]
-  (with-translation [0 1 0]
-    (box cube))
+(osc/osc-handle server "/beat" (fn [msg]
+;;                                 (println msg)
+                                 (reset! beat {:beatnum (first (:args msg))})
+                                ))
 
+
+(defn drawbox [cube]
+  (box cube)
+  (with-translation [0(* (+ 1 (mod4)) cube) 0]
+    (box cube)
+    )
   )
 
-
-
+(defn mod4 []
+  (mod  (:beatnum @beat) 4)
+  )
 
 
 (defn setup []
@@ -74,33 +63,28 @@
   (smooth)
   (stroke 0 500)
   (line 20 50 480 50)
-  (stroke 2 50 70)
-;;   (set-state! :oscmsg (atom [0 0]))
-;;   (set-state! :cubesize 10)
-
-
+  (stroke 2 255 170)
 
 )
 
 
 (defn draw []
-  (background 255)
-  (camera 200 200 200 0 0 0 0 0 -1)
-;;   (drawbox 10)
-;;   (with-translation [0 100 0]
-;;  (drawbox 10)
-;;   )
-;;   (with-translation [110 100 0]
-;;     (box 70 10 50))
-  (stroke-weight 20)
-;;   (let [[x y] @(state :oscmsg)]
-;;     (drawbox x)
-;;     (drawbox y)
-;;     )
-;;   (let [c (state [:cubesize])]
-;;     (drawbox c))
-(:cubesize @cube1)
-  (drawbox (:cubesize @cube1))
+  (background 45  45 255)
+  (camera 100 400 200 0 0 0 0 0 -1)
+;;   (camera)
+  (stroke-weight 5)
+  (stroke 0 255 0)
+  (fill 121)
+  (ortho 0 1000 0 1000)
+;;   (mod4 beat :beatnum)
+
+  (with-translation [(* (mod4) 100) 0 0]
+
+;;   (with-translation [10 100 0])
+  (:cubesize @cube1)
+  (drawbox 100)
+    )
+;;   (drawbox (:cubesize @cube1))
 ;;   (let [step      10
 ;;         border-x  30
 ;;         border-y  10
@@ -111,12 +95,13 @@
   )
 
 
-(defsketch example-5
+#_(defsketch example-5
   :title "Random Scribble"
   :setup setup
   :draw draw
   :renderer :p3d
   :size [500 500])
 
+;; (:cubesize @cube1)
 
 
