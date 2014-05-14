@@ -56,6 +56,13 @@
   (mod  (:beatnum @beat) 4)
   )
 
+(defn kube1 []
+  (* 1 (:cubesize @cube1))
+  )
+
+(kube1)
+
+
 
 (defn setup []
   (background 255)
@@ -70,9 +77,18 @@
 
 (defn draw []
   (background 45  45 255)
-  (camera 100 400 200 0 0 0 0 0 -1)
+  (camera 0 200 200 0 0 0 0 0 -1)
+
+;;   (spot-light 255, 255, 0
+;;               100, -40, 200
+;;               0, 0.5, 0.5
+;;               1.5, 2)
+
+  (point-light 150, 150, 0
+               1, 0, 0)
+
 ;;   (camera)
-  (stroke-weight 5)
+  (stroke-weight 1)
   (stroke 0 255 0)
   (fill 121)
   (ortho 0 1000 0 1000)
@@ -81,10 +97,11 @@
   (with-translation [(* (mod4) 100) 0 0]
 
 ;;   (with-translation [10 100 0])
-  (:cubesize @cube1)
-  (drawbox 100)
+
+  (drawbox (kube1))
+
+;;   (drawbox (:    cubesize @cube1))
     )
-;;   (drawbox (:cubesize @cube1))
 ;;   (let [step      10
 ;;         border-x  30
 ;;         border-y  10
@@ -95,7 +112,7 @@
   )
 
 
-#_(defsketch example-5
+(defsketch example-5
   :title "Random Scribble"
   :setup setup
   :draw draw
