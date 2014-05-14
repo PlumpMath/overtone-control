@@ -45,16 +45,33 @@
                                 ))
 
 
+(defn drawscore []
+
+  )
+
 (defn drawbox [cube]
   (box cube)
-  (with-translation [0(* (+ 1 (mod4)) cube) 0]
+  (with-translation [0 (* (+ 1 (mod4)) cube) 0]
     (box cube)
-    )
+    (with-translation [cube 0 0]
+      (sphere (/ cube 2) ))
+
+  )
   )
 
 (defn mod4 []
   (mod  (:beatnum @beat) 4)
   )
+
+
+(defn mod8 []
+  (mod  (:beatnum @beat) 8)
+  )
+
+(defn mod1 []
+  (mod  (:beatnum @beat) 1)
+  )
+
 
 (defn kube1 []
   (* 1 (:cubesize @cube1))
@@ -74,10 +91,13 @@
 
 )
 
+(live/lf-pulse:kr 0.5 0 3)
+
+(* (live/sin-osc:kr 10.0 0) 1)
 
 (defn draw []
   (background 45  45 255)
-  (camera 0 200 200 0 0 0 0 0 -1)
+;;   (camera (* (mod8) (* (live/sin-osc:kr 10 0 ) 100)) 400 200 0 0 0 0 0 -1)
 
 ;;   (spot-light 255, 255, 0
 ;;               100, -40, 200
@@ -91,14 +111,18 @@
   (stroke-weight 1)
   (stroke 0 255 0)
   (fill 121)
-  (ortho 0 1000 0 1000)
+;;   (ortho 0 1000 0 1000)
+  (perspective)
+;;   (line 0 (/ 500 (mod8)) 100 500)
 ;;   (mod4 beat :beatnum)
 
   (with-translation [(* (mod4) 100) 0 0]
 
 ;;   (with-translation [10 100 0])
 
-  (drawbox (kube1))
+  (drawscore )
+
+  (drawbox 100)
 
 ;;   (drawbox (:    cubesize @cube1))
     )
