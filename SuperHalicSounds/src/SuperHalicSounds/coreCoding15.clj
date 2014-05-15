@@ -11,6 +11,15 @@
        ))
 
 
+;; create OSC client
+(def PORT 4242)
+(def client (osc-client "localhost" PORT))  ;; change localhost to viz IP
+
+
+;; osc-send
+(osc-send client "/test" "i" 42)
+
+
 
 ;;  (piano)
  (mic)
