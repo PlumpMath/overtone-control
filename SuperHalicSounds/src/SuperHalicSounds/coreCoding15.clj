@@ -194,9 +194,14 @@
   (apply-at (m (inc num)) bassE m (inc num) (next notes) []))
 (defn wobble [m num]
   (at (m num)
-      (ctl dubstep :wobble-freq
+;;       (println (num))
+      (ctl dubstep :wobble-freq ((fn [x]
+                                   (osc-send client "/wobble" x)
+                                   x
+                                   ) (choose [16 2 8 2 3 2]))
+
 ;;            (choose [16 2 8 2 3 2])
-              (choose [1 2 1 2 2 2])
+;;               (choose [1 2 1 2 2 2])
            ))
   (apply-at (m (+ 4 num)) wobble m (+ 2 num) [])
   )
@@ -206,7 +211,7 @@
     (bassE metro (metro) (cycle notes))
     (wobble metro (metro))
     )
-;; (kill dubstep)
+(kill dubstep)
 
 
   (phat-beats metro (metro))
@@ -219,7 +224,7 @@
   (metro-bpm metro 120)
 
 
-
+(metro-beat metro)
 
 
 

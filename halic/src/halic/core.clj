@@ -21,7 +21,7 @@
 (def server (osc/osc-server PORT))
 ;; (def client (osc/osc-client "localhost" PORT))
 
-(live/sc-osc-debug-off)
+(live/sc-osc-debug-on)
 
 ;; object defs
 
@@ -31,18 +31,30 @@
 ;; (:cubesize @cube1)
 
 
-(osc/osc-handle server "/test" (fn [msg]
-                            (let [x (first (:args msg)) y (first(rest(:args msg)))]
-                              (reset! cube1 {:cubesize x})
-;;                               (println y)
-                              )))
+;; (osc/osc-handle server "/test" (fn [msg]
+;;                             (let [x (first (:args msg)) y (first(rest(:args msg)))]
+;;                               (reset! c
+;;                                       ube1 {:cubesize x})
+;; ;;                               (println y)
+;;                               )))
 
 
 
-(osc/osc-handle server "/beat" (fn [msg]
-;;                                 (println msg)
-                                 (reset! beat {:beatnum (first (:args msg))})
+;; (osc/osc-handle server "/beat" (fn [msg]
+;; ;;                                 (println msg)
+;;                                  (reset! beat {:beatnum (first (:args msg))})
+;;                                 ))
+
+
+(osc/osc-handle server "/wobble" (fn [msg]
+                                (println msg)
+;;                                  (reset! beat {:beatnum (first (:args msg))})
                                 ))
+
+(defn mod4 []
+  (mod  (:beatnum @beat) 4)
+  )
+
 
 
 (defn drawscore []
@@ -59,9 +71,6 @@
   )
   )
 
-(defn mod4 []
-  (mod  (:beatnum @beat) 4)
-  )
 
 
 (defn mod8 []
@@ -91,13 +100,13 @@
 
 )
 
-(live/lf-pulse:kr 0.5 0 3)
+;; (live/lf-pulse:kr 0.5 0 3)
 
-(* (live/sin-osc:kr 10.0 0) 1)
+;; (* (live/sin-osc:kr 10.0 0) 1)
 
 (defn draw []
   (background 45  45 255)
-;;   (camera (* (mod8) (* (live/sin-osc:kr 10 0 ) 100)) 400 200 0 0 0 0 0 -1)
+  (camera (* mod8 100) 400 200 0 0 0 0 0 -1)
 
 ;;   (spot-light 255, 255, 0
 ;;               100, -40, 200
@@ -116,11 +125,11 @@
 ;;   (line 0 (/ 500 (mod8)) 100 500)
 ;;   (mod4 beat :beatnum)
 
-  (with-translation [(* (mod4) 100) 0 0]
+;;   (with-translation [(* (mod4) 100) 0 0]
 
 ;;   (with-translation [10 100 0])
 
-  (drawscore )
+;;   (drawscore )
 
   (drawbox 100)
 
@@ -133,10 +142,10 @@
 ;;         ys        (repeatedly #(rand-y border-y))
 ;;         line-args (line-join-points xs ys)]
 ;;     (dorun (map #(apply line %) line-args)))
-  )
 
 
-(defsketch example-5
+
+#_(defsketch example-5
   :title "Random Scribble"
   :setup setup
   :draw draw
