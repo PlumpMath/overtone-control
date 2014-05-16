@@ -242,9 +242,14 @@
 ;; current function at the tail position, we instead schedule it to
 ;; execute at some future time:
 
+(def PORT 4242)
+(def client (osc-client "localhost" PORT))  ;; change localhost to viz IP
+
+
+
 (defn scheduled-hello-world [curr-t sep-t]
   (println "hello world")
-
+  (osc-send client "/wobble" 34)
   (let [new-t (+ curr-t sep-t)]
     (apply-at new-t #'scheduled-hello-world [new-t sep-t])))
 
