@@ -196,7 +196,9 @@
   (at (m num)
 ;;       (println (num))
       (ctl dubstep :wobble-freq ((fn [x]
-                                   (osc-send client "/wobble" x)
+                                   (osc-send client "/wobble" 34)
+;;                                    (osc-send-msg client {:path "/wobble" :type-tag "i" :args [42]})
+;;                                    (in-osc-bundle client (now) (osc-msg "/wobble" x))
                                    x
                                    ) (choose [16 2 8 2 3 2]))
 
@@ -223,16 +225,17 @@
   (def metro (metronome 120))
   (metro-bpm metro 120)
 
-(apply-at (metro (metro-beat metro))  (osc-send client "/wobble" (metro) ))
-   (defn foo
-     [t val]
-     (println val)
-     (let [next-t (+ t 20000)]
-       (apply-at next-t #'foo [next-t (inc val)])))
-
-(foo 1000 1000)
 
 
 (stop)
 
+;; for sending the beatnumber over to sequential!
+(defn looper [nome ]
+    (let [beat (nome)]
+        (apply-by (nome (inc beat)) (osc-send client "/beat" beat))
+        (apply-by (nome (inc beat)) looper nome [])
+      ))
 
+; turn on sender
+(looper metro)
+(stop)
