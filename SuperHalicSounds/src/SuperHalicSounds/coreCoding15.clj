@@ -216,17 +216,21 @@
 
   (phat-beats metro (metro))
 
-
-;metro
+(
+);metro
   (metro)
   (metro 4)
   (def metro (metronome 120))
   (metro-bpm metro 120)
 
+(apply-at (metro (metro-beat metro))  (osc-send client "/wobble" (metro) ))
+   (defn foo
+     [t val]
+     (println val)
+     (let [next-t (+ t 20000)]
+       (apply-at next-t #'foo [next-t (inc val)])))
 
-(metro-beat metro)
-
-
+(foo 1000 1000)
 
 
 (stop)
