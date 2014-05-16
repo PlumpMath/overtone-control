@@ -296,7 +296,9 @@
 (defn beat [curr-t sep-t]
   (at curr-t (subby))
   (let [new-t (+ curr-t sep-t)]
-    (apply-by new-t #'beat [new-t sep-t])))
+    (apply-by new-t #'beat [new-t sep-t])
+    (apply-by new-t (osc-send client "/wobble" 34))
+    ))
 
 (beat (now) 600)
 
