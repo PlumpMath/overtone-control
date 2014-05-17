@@ -233,7 +233,7 @@
 
 (stop)
 
-;; for sending the beatnumber over to sequential!
+;; for sending the beatnumber over to quil!
 (defn looper [nome ]
     (let [beat (nome)]
         (apply-by (nome (inc beat)) (osc-send client "/beat" beat))
