@@ -10,6 +10,14 @@
        [overtone.osc.dyn-vars]
        ))
 
+
+;; create OSC client
+(def PORT 4242)
+(def client (osc-client "localhost" PORT))  ;; change localhost to viz IP
+
+
+
+
 (definst kickA [freq 100 dur 0.4 width 0.5]
   (let [freq-env (* freq (env-gen (perc -0.03 (* 0.99 dur))))
         env (env-gen (perc 0.01 dur) 1 1 0 1 FREE)
@@ -232,6 +240,21 @@
 
 (player (metro))
 ;; (metro-bpm metro 150)
+
+
+
+
+
+;; for sending the beatnumber over to quil!
+(defn beat2quil [nome ]
+    (let [beat (nome)]
+        (apply-by (nome (inc beat)) (osc-send client "/beat" beat))
+        (apply-by (nome (inc beat)) looper nome [])
+      ))
+
+; turn on sender
+(beat2quil metro)
+(stop)
 
 (stop)
 
