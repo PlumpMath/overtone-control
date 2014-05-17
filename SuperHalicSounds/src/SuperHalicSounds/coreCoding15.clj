@@ -196,9 +196,13 @@
   (at (m num)
 ;;       (println (num))
       (ctl dubstep :wobble-freq ((fn [x]
-                                   (osc-send client "/wobble" 34)
-;;                                    (osc-send-msg client {:path "/wobble" :type-tag "i" :args [42]})
-;;                                    (in-osc-bundle client (now) (osc-msg "/wobble" x))
+;;                                    (osc-send client "/wobble" 34)
+                                      (println "x is" x)
+;;                                       (osc-send client "/wobble" x)
+;;                                       (at (m num) (osc-send client "/wobble" x))
+;;                                       (apply-by (m (inc num)) (osc-send client "/wobble" x))
+;;                                       (osc-send-msg client {:path "/wobble" :type-tag "i" :args [42]})
+;;                                       (in-osc-bundle client (now) (osc-msg "/wobble" x))
                                    x
                                    ) (choose [16 2 8 2 3 2]))
 
