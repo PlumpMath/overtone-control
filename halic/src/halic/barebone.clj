@@ -6,6 +6,15 @@
   (:require [quil.helpers.drawing :refer [line-join-points]])
 )
 
+(line-join-points [1 2 3] [4 5 6])
+(line-join-points [[1 4] [2 5] [3 6]])
+
+
+(let [p (line-join-points [[1 4] [2 5] [3 6]])]
+  (println p)
+;; (line (p))
+  )
+
 (defn setup []
   (background 255)
   (smooth)
@@ -24,15 +33,17 @@
                                  (reset! beat {:beatnum (first (:args msg))})
                                  ))
 
+
+
 (defn mod4 []
   (mod  (:beatnum @beat) 4)
   )
 
 (mod4)
 
-(range-incl 100)
-(tally)
-(beat)
+
+
+
 (if (= 0 (mod4)) )
 (def s (seq->stream (cycle-between 10 100 4 40)) )
 (def s4 (seq->stream (cycle-between 10 100)) )
