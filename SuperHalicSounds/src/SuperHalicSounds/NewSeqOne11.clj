@@ -99,7 +99,11 @@
                       :else
                       nil)]
              :when v]
-       (at curr-t (apply sound v)))
+       (at curr-t (apply sound v))
+;;        (at curr-t (println v))
+;;        (at curr-t (osc-send client "/liveseq" "v"))
+       (apply-by curr-t (osc-send-msg client {:path "/live-seq" :type-tag "i" :args [2]}))
+       )
      (let [new-t (+ curr-t sep-t)]
        (apply-by new-t #'live-sequencer [new-t sep-t live-patterns (inc beat)]))))
 
@@ -109,7 +113,7 @@
 (def d {:amp 2.00})
 
 (live-sequencer (now) 200 live-pats)
-;; (stop)
+(stop)
 
 
 (swap! live-pats assoc clap1 [0 0 1 0 0 0 1 0])
@@ -118,6 +122,20 @@
 (swap! live-pats assoc snareB  [0 1 0 b 1 0 1 a 1 c [c 1 1]])
 (swap! live-pats assoc kickA   [1 0 1 1 0 0 1 1 0 1 [1 1 1 1 1 1 1 1]])
 
+@live-pats
+((fn [x]
+;;                                    (osc-send client "/wobble" 34)
+                                      (println "x is" x)
+;;                                       (osc-send client "/wobble" x)
+;;                                       (at (m num) (osc-send client "/wobble" x))
+;;                                       (apply-by (m (inc num)) (osc-send client "/wobble" x))
+;;                                       (osc-send-msg client {:path "/wobble" :type-tag "i" :args [42]})
+;;                                       (in-osc-bundle client (now) (osc-msg "/wobble" x))
+                                   x
+                                   ) (choose [16 2 8 2 3 2]))
+
+(:clap1 @live-pats )
+(keys live-pats)
 
 
 
@@ -249,7 +267,7 @@
 (defn beat2quil [nome ]
     (let [beat (nome)]
         (apply-by (nome (inc beat)) (osc-send client "/beat" beat))
-        (apply-by (nome (inc beat)) looper nome [])
+        (apply-by (nome (inc beat)) beat2quil nome [])
       ))
 
 ; turn on sender
