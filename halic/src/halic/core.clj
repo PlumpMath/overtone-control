@@ -39,12 +39,15 @@
 (:cubesize @cube1)
 
 
-(osc/osc-handle server "/test" (fn [msg]
-                            (let [x (first (:args msg)) y (first(rest(:args msg)))]
-                              (reset! cube1 {:cubesize x})
+(osc/osc-handle server "/live-seq" (fn [msg]
+;;                                (println (hash-m (first (:args msg))))
+;;                             (let [x (first (:args msg)) y (first(rest(:args msg)))]
+;;                               (reset! cube1 {:cubesize x})
 ;;                               (println y)
-                              )))
+                              ))
 
+
+(read-string "{:src-port 54846, :src-host localhost, :path 'live-seq', :type-tag s, :args ((:amp 0.5))}")
 
 
 (osc/osc-handle server "/beat" (fn [msg]

@@ -13,7 +13,7 @@
 
 ;; create OSC client
 (def PORT 4242)
-(def client (osc-client "localhost" PORT))  ;; change localhost to viz IP
+(def client (osc-client "192.168.2.1" PORT))  ;; change localhost to viz IP
 
 
 
@@ -116,26 +116,11 @@
 (stop)
 
 
-(swap! live-pats assoc clap1 [0 0 1 0 0 0 1 0])
-(swap! live-pats assoc o-hat [0 0 0 0 0 0 0 d])
-(swap! live-pats assoc c-hat [1 1 0 b 0 1 a c])
-(swap! live-pats assoc snareB  [0 1 0 b 1 0 1 a 1 c [c 1 1]])
-(swap! live-pats assoc kickA   [1 0 1 1 0 0 1 1 0 1 [1 1 1 1 1 1 1 1]])
-
-@live-pats
-((fn [x]
-;;                                    (osc-send client "/wobble" 34)
-                                      (println "x is" x)
-;;                                       (osc-send client "/wobble" x)
-;;                                       (at (m num) (osc-send client "/wobble" x))
-;;                                       (apply-by (m (inc num)) (osc-send client "/wobble" x))
-;;                                       (osc-send-msg client {:path "/wobble" :type-tag "i" :args [42]})
-;;                                       (in-osc-bundle client (now) (osc-msg "/wobble" x))
-                                   x
-                                   ) (choose [16 2 8 2 3 2]))
-
-(:clap1 @live-pats )
-(keys live-pats)
+(swap! live-pats assoc clap1 [a a a b a a a a b])
+(swap! live-pats assoc o-hat [a a a b a a a a b])
+(swap! live-pats assoc c-hat [a a a b a a a a b])
+(swap! live-pats assoc snareB  [a a a b a a a a b c [c a a]])
+(swap! live-pats assoc kickA   [a a a b a a a a b [a a a b a a a a b]])
 
 
 
@@ -256,7 +241,7 @@
 
 
 
-(player (metro))
+;; (player (metro))
 ;; (metro-bpm metro 150)
 
 
