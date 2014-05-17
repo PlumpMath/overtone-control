@@ -14,6 +14,10 @@
 ;;   (:require [shadertone.tone :as t])
 )
 
+
+
+
+
 (memoize [(fn [x](+ 1 x)) 3])
 
 
@@ -24,6 +28,8 @@
 ;; (def client (osc/osc-client "localhost" PORT))
 
 (live/sc-osc-debug-on)
+
+
 
 ;; object defs
 
@@ -48,7 +54,7 @@
 
 
 (osc/osc-handle server "/wobble" (fn [msg]
-                                (println (:args msg))
+                                (println "weird "(:args msg))
 ;;                                  (reset! beat {:beatnum (first (:args msg))})
                                 ))
 
@@ -82,6 +88,14 @@
       (box cube)
       )
   )
+  (begin-shape :triangles )
+               (vertex 0 0 0)
+               (vertex 200 0 0)
+               (vertex 0 200 0)
+               (vertex 200 200 0)
+
+  (end-shape :close)
+
   )
 
 
