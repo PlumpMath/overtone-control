@@ -102,7 +102,7 @@
        (at curr-t (apply sound v))
 ;;        (at curr-t (println v))
 ;;        (at curr-t (osc-send client "/liveseq" "v"))
-       (apply-by curr-t (osc-send-msg client {:path "/live-seq" :type-tag "i" :args [2]}))
+       (apply-by curr-t (osc-send client "/live-seq" (str v)))
        )
      (let [new-t (+ curr-t sep-t)]
        (apply-by new-t #'live-sequencer [new-t sep-t live-patterns (inc beat)]))))
