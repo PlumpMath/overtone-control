@@ -2,75 +2,89 @@
   (:require [overtone.live :as live])
   (:require [overtone.osc :as osc])
   (:require [quil.core :refer :all])
-  (:require [quil.helpers.seqs :refer [seq->stream range-incl cycle-between tally ]])
+  (:require [quil.helpers.seqs :refer [seq->stream range-incl cycle-between]])
   (:require [quil.helpers.drawing :refer [line-join-points]])
 )
-
-(line-join-points [1 2 3] [4 5 6])
-(line-join-points [[1 4] [2 5] [3 6]])
-
-
-(let [p (line-join-points [[1 4] [2 5] [3 6]])]
-  (println p)
-;; (line (p))
-  )
+;; object defs
 
 (defn setup []
-  (background 255)
   (smooth)
-  ;; communication with bohrbug
-;;   (def PORT 4243)
-;;   (def server (osc/osc-server PORT))
 
 )
-;; object defs
-(def beat (atom {:beatnum 0}))
-(:beatnum @beat)
-
-;;message handling
-(osc/osc-handle server "/beat" (fn [msg]
-                                 ;;                                 (println msg)
-                                 (reset! beat {:beatnum (first (:args msg))})
-                                 ))
-
-
-
-(defn mod4 []
-  (mod  (:beatnum @beat) 4)
-  )
 
 (mod4)
 
+(tr)
+
+(def tr (seq->stream (cycle-between 0 100 1 100)))
+(def s1 (seq->stream (cycle-between 0 10 0.1 10 )))
+
+(def s (seq->stream (cycle-between 0 100 1 10 )))
+
+(defn drawstuff [size]
+
+  (box size)
+  (with-translation [size size 0]
+    (fill (tr) 1 98)
+    (box (/ size 2))
+    )
+    (with-translation [0 size size]
+      (fill 1 0 98)
+    (box (/ size 4))
+    )
+    (with-translation [0 0 (* ( s) size)]
+     (box (/ size 3))
+      )
+
+  )
 
 
 
-(if (= 0 (mod4)) )
-(def s (seq->stream (cycle-between 10 100 4 40)) )
-(def s4 (seq->stream (cycle-between 10 100)) )
-(s)
 (defn draw []
-  (background 120 120 30)
-;;   (camera (* (mod4) 100) (* (mod4) 100) (* (mod4) 100) 0 0 0 1 1 1)
-;;   (take 5(repeatedly (
+  (background 10 12 30)
+  (ortho)
+  (stroke-weight 1)
+  (perspective)
+  (with-translation [200  100]
+    (fill 255 0 0)
+;;     (box 100 100 100)
+  )
+  (with-translation [100 100]
+;;     (box 100 100 (* (s) (mod8)))
+  )
+  (with-translation [100  100]
+    (fill 12 110 255)
+    (box 154 32 (tr))
+  )
 
-  (line 110 100 10 (s))
-  (line 210 100 10 (s4))
-;;                       )))
+  (with-translation [600  100]
+    (fill 255 0 0)
+    (box (* 5 (s)) (tr) 150)
+  )
+
+
+
+    (with-translation [(* 100 (mod4)) 40]
+    (fill (tr) 255 0)
+;;     (box (s) (tr) 170)
+  )
+;;   (drawstuff 200)
+;;     (drawstuff (* (mod8) (s)))
+
+  (stroke-weight 2)
+  (stroke (* (tr) 3) 100 (* (tr) 1))
+;;   (line (* (s) 10) 100 600 600)
+;;   (line (* (s) 10) 10 (* (s) 10) 200)
+
+;;   (line (* (s) 40) 10 (* (s) 10) 200)
+;;   (line (* (s) 90) 10 (* (s) 80) 200)
+;;   (line (* (s) 90) 10 (* (s) 10) 200)
+;;   (line (* (s) 60) 10 (* (s) 10) 200)
 ;;   (camera)
-;;   (perspective)
-
+  (camera 400 (* (mod4) 3 ) 10  0 0 0 0 0 -1)
+;;   (camera 375 375 0 375 375 1000 0 1 0)
 
 )
-
-
-(defsketch example-5
-  :title "[]<>"
-  :setup setup
-  :draw draw
-  :renderer :p3d
-  :size [500 500])
-
-
 
 
 
