@@ -7,7 +7,7 @@ it consists of:
 
 ##HALIC
 
-H.euristic AL.goritmic I.ntelligent C.ontroller
+H.euristic AL.goritmic I.ntelligent C.ontrollers
 
 blending both algorithms and human intelligence into a heuristic controller
 
