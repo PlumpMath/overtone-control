@@ -1,14 +1,12 @@
 # ext-sxf-gfx
 
-A Clojure library designed to ... well, that part is up to you.
+make sfx and gfx with shared data
 
 ## Usage
 
-FIXME
+first start the external supercolliderserver (localhost or remote)
+start core.clj from lighttable (CMD-shift-enter), you might have to re-eval the connect-server line,
+then ext-sfx, then ext-gfx, while adapting the IP adress to that of the supercolliderserver (default localhost)
 
-## License
+MAKE SOME SOUND!
 
-Copyright © 2014 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.

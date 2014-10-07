@@ -18,8 +18,17 @@
         (compander drum drum 0.4 0.5 0.1 0.01 0.01)))
 (kickA)
 
-(defsynth trem [freq 440 depth 10 rate 6 length 3]
-    (tap "saw-freq" 30 freq)
+;; (defsynth trem [freq 440 depth 10 rate 6 length 3]
+;;     (tap "saw-freq" 30 freq)
+;;     (out [0 1] (* 0.3
+;;        (line:kr 0 1 length FREE)
+;;        (saw (+ freq (* depth (sin-osc:kr rate))))
+;;        ))
+
+;;     )
+
+(definst trem [freq 440 depth 10 rate 6 length 3]
+;;     (tap "saw-freq" 30 freq)
     (out [0 1] (* 0.3
        (line:kr 0 1 length FREE)
        (saw (+ freq (* depth (sin-osc:kr rate))))
@@ -27,7 +36,8 @@
 
     )
 
-(trem 200 3 7 3)
+
+(trem 250 3 7 3)
 
 
 ;; Define a synth we can use to tap into the stereo out.
@@ -61,7 +71,7 @@
 
 (def live-pats (atom pats))
 
-(swap! live-pats assoc kickA   [1 0 1 1 0 0 0 1 0 0[1 1 1 1 0 1 1 1]])
+(swap! live-pats assoc kickA   [1 1 0 1[1 1 1 1 0 1 1 1]])
 
 (defn flatten1
   "Takes a map and returns a seq of all the key val pairs:
@@ -88,6 +98,6 @@
      (let [new-t (+ curr-t sep-t)]
        (apply-by new-t #'live-sequencer [new-t sep-t live-patterns (inc beat)]))))
 
-(live-sequencer (now) 200 live-pats)
+;; (live-sequencer (now) 250 live-pats)
 
-(stop)
+;; (stop)

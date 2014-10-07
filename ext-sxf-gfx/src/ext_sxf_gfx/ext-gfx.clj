@@ -22,13 +22,15 @@
 
 (init-taps)
 
-(get-taps)
 
 
 (defn get-taps
   "Deref and return all of our taps as a plain old map."
   [] (when *taps*
        (into {} (map (fn [[k v]] [k @v]) *taps*))))
+
+;; (get-taps)
+
 
 (defn- scale-in
   "Scale a tap value by 'max'."
@@ -69,12 +71,12 @@
     (q/with-translation [(/ (q/width) 2)
                          (/ (q/height) 2)]
       ; Draw the circle.
+;;       (q/ellipse (:size state) 0 (:size state) (:size state)))))
       (q/ellipse (:size state) 0 (:size state) (:size state)))))
 
 
-
 (q/defsketch hello-quil
-  :title "You spin my circle right rund"
+  :title "You spin my circle right round"
   :size [500 500]
   ; setup function called only once, during sketch initialization.
   :setup setup
