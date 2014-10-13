@@ -71,7 +71,7 @@
 
 (def live-pats (atom pats))
 
-(swap! live-pats assoc kickA   [1 1 0 1[1 1 1 1 0 1 1 1]])
+(swap! live-pats assoc kickA   [1 1 0 1 1 1 0 1 1 0 1[1 1 1 1 0 1 1 1]])
 
 (defn flatten1
   "Takes a map and returns a seq of all the key val pairs:
@@ -98,6 +98,7 @@
      (let [new-t (+ curr-t sep-t)]
        (apply-by new-t #'live-sequencer [new-t sep-t live-patterns (inc beat)]))))
 
-;; (live-sequencer (now) 250 live-pats)
+(live-sequencer (now) 2050 live-pats)
+
 
 ;; (stop)
