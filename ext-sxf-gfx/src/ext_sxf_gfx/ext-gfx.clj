@@ -214,13 +214,13 @@
 ;;   (q/stroke 255 255 255 )
 ;;   (q/box 20 100 20)
 
-;;   (q/with-translation [(/ (q/width) 3) (/ (q/height) 2)]
+  (q/with-translation [(/ (q/width) 3) (/ (q/height) 2)]
 ;;    (draw-plot f 0 100 0.01))
-;;    (q/with-translation [(- (/ (q/width) 5) 100) (- (/ (q/height) 5) 500)]
-;;     (q/stroke 255 1 255)
-;;     (dotimes [n 500] (q/line  (* n (:color state)) (* n 10) (* n 40) (* n 100)))
+   (q/with-translation [(- (/ (q/width) 5) 100) (- (/ (q/height) 5) 500)]
+    (q/stroke 255 1 255)
+    (dotimes [n 500] (q/line  (* n (:color state)) (* n 10) (* n 40) (* n 100)))
 
-;;   )
+    )
 
 ;;   (q/with-translation [(/ (q/width) 5) (/ (q/height) 5)]
 ;;     (q/stroke 255)

@@ -101,4 +101,4 @@
 (live-sequencer (now) 2050 live-pats)
 
 
-;; (stop)
+(stop)
