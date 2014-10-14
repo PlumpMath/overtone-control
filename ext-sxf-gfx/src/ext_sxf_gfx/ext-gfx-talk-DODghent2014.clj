@@ -63,16 +63,22 @@
 (def blah (seq->stream (cycle-between 0 10 1 0.1)))
 (blah)
 
+(defn heading [h]
+  (q/fill 0)
+  (q/rect 100 100 400 -50)
+  (q/fill 255 255 0)
+  (q/text-size 50)
+  (q/text h 100 100)
+  )
+
 
 (defn fitimage [src]
   (dosync (ref-set img (q/load-image src)))
   (if (<= (/ (. @img width) (. @img height)) ratio)
     (q/image @img (/ (- Width (* (/ Height (. @img height)) (. @img width))) 2) 0 (* (/ Height (. @img height)) (. @img width)) (* (/ Height (. @img height)) (. @img height)))
-    (q/image @img 0 y (* (/ Width (. @img width)) (. @img width)) (* (/ Width (. @img width)) (. @img height)) )
-
-    )
-;;   (q/image @img 0 0 )
-  )
+    (q/image @img 0 (/ (- Height (* (/ Width (. @img width)) (. @img height))) 2) (* (/ Width (. @img width)) (. @img width)) (* (/ Width (. @img width)) (. @img height)) )
+   )
+)
 
 
 (def img (ref nil))
@@ -80,15 +86,43 @@
 (defn draw [state]
   (q/background 0)
 
-;;   Title
-;;   (q/fill 255 255 0)
-;;   (q/text-size (* 10 (blah)))
-;;   (q/text "Hi there!" 100 100)
+;; ====== Introduction =======
 
-;;  philosophy
-  (fitimage "resources/control_room.jpg")
-  (fitimage "resources/moogtall.jpg")
+;; === HALIC ===
+;;   (q/fill 255 255 0)
+;;   (q/text-size 50)
+;;   (q/text "H.euristic" 100 100)
+;;   (q/text "AL.gorithmic" 100 200)
+;;   (q/text "I.ntelligent" 100 300)
+;;   (q/text "C.ontrollers" 100 400)
+;;   (def keywords ["humans", "machines", "interaction"])
+;; ;; while explaining halic, make some sound, and map a tap on the color, showing the interactive part
+
+
+;; === humans: kaosbeat & bohrbug ===
+;;   (fitimage "resources/halic.jpg")
+
+;; = kaosbeat =
+;; (fitimage "resources/kaos.png")
+;; (heading "Hi There!")
+;; (def keywords ["Architect" "@kaosbeat" "creative technologist"])
+
+;; = bohrbug =
+;; (fitimage somepic.jpg)
+;; (def keywords ["describe" "yourself" "in" "keywords" ])
+
+;; === philosophy ===
+;;   (fitimage "resources/control_room.jpg")
+;;   (heading "Control the galaxy")
+
+
+;; ;; === livecoding ===
+(fitimage "resources/moog.jpg")
+(def keywords ["live" "tool" "or" "instrument"])
 ;;
+
+;; ;; == clojure ==
+;; (def keywords ["lambda-calculus" "functional programming"])
 
   )
 
