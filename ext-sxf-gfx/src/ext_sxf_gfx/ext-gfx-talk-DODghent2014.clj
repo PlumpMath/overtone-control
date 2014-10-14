@@ -42,6 +42,7 @@
   (def Width (q/width))
   (def Height (q/height))
   (def ratio (/ Width Height))
+
   {:color 0
    :angle 0})
 
@@ -59,9 +60,35 @@
     })
 
 
-(defn draw [state]
-  (q/background 255)
+(def blah (seq->stream (cycle-between 0 10 1 0.1)))
+(blah)
 
+
+(defn fitimage [src]
+  (dosync (ref-set img (q/load-image src)))
+  (if (<= (/ (. @img width) (. @img height)) ratio)
+    (q/image @img (/ (- Width (* (/ Height (. @img height)) (. @img width))) 2) 0 (* (/ Height (. @img height)) (. @img width)) (* (/ Height (. @img height)) (. @img height)))
+    (q/image @img 0 y (* (/ Width (. @img width)) (. @img width)) (* (/ Width (. @img width)) (. @img height)) )
+
+    )
+;;   (q/image @img 0 0 )
+  )
+
+
+(def img (ref nil))
+
+(defn draw [state]
+  (q/background 0)
+
+;;   Title
+;;   (q/fill 255 255 0)
+;;   (q/text-size (* 10 (blah)))
+;;   (q/text "Hi there!" 100 100)
+
+;;  philosophy
+  (fitimage "resources/control_room.jpg")
+  (fitimage "resources/moogtall.jpg")
+;;
 
   )
 
