@@ -13,29 +13,55 @@
         env (env-gen (perc 0.01 dur) 1 1 0 1 FREE)
         sqr (* (env-gen (perc 0 0.04)) (pulse (* 2 freq) width))
         src (sin-osc freq-env)
-        drum (+ sqr (* env src))]
-;;         (tap "kick-freq" 30 freq)
-        (compander drum drum 0.4 0.5 0.1 0.01 0.01)))
+        drum (+ sqr (* env src))
+        ]
+        (compander drum drum 0.4 0.5 0.1 0.01 0.01)
+;;     (tap :kick-freq 30 freq)
+    )
+  )
 (kickA)
 
-;; (defsynth trem [freq 440 depth 10 rate 6 length 3]
-;;     (tap "saw-freq" 30 freq)
-;;     (out [0 1] (* 0.3
-;;        (line:kr 0 1 length FREE)
-;;        (saw (+ freq (* depth (sin-osc:kr rate))))
-;;        ))
 
-;;     )
+(defsynth fm [carrier 880 divisor 5.0 depth 4.0 out-bus 0]
+  (let [modulator (/ carrier divisor)
+        mod-env (env-gen (lin 1.9 3.8 -2.8))
+        amp-env (env-gen (lin 1 0 4.0 1) :action FREE)
+        filt (rlpf (+ carrier modulator ) 100 0.1)]
+    (out out-bus  (pan2 (* 0.15 amp-env
+                          (sin-osc (+ carrier
+                                      (* mod-env (* carrier depth) (sin-osc modulator))))))
+;;          (tap :pan :kr (pan2 (* 0.15 amp-env
+;;                           (sin-osc (+ carrier
+;;                                       (* mod-env (* carrier depth) (sin-osc modulator)))))))
+    )))
+
+
+(fm 300 2 4 0)
+
+
+(defsynth fmtones [carrier 880 divisor 10.0 depth 8.0 out-bus 0]
+  (let [modulator (/ carrier divisor)
+        mod-env (env-gen (lin -0.2 0.4 0.8))
+        amp-env (env-gen (lin 0 -0.2 0.1 1 ) :action FREE)
+        filt (glitch-rhpf:ar (+ carrier modulator ) 600 0.6)
+             ]
+      (out out-bus (pan2 (* 0.50 amp-env
+                          (formant (+ carrier
+                                      (* mod-env (* carrier depth) (line modulator)))))))))
+;  Chaos  ()
+;  Line   (amp-comp, amp-comp-a, k2a, line )
+;  Random (rand-seed, lonrenz-trig )
+;  Noise  (lf-noise, hasher , mantissa-mask)
+
+(fmtones)
 
 (definst trem [freq 440 depth 10 rate 6 length 3]
-;;     (tap "saw-freq" 30 freq)
+;;     (tap :saw-freq 30 freq)
     (out [0 1] (* 0.3
        (line:kr 0 1 length FREE)
        (saw (+ freq (* depth (sin-osc:kr rate))))
        ))
-
     )
-
 
 (trem 250 3 7 3)
 
@@ -59,9 +85,6 @@
   @(:right mytaps)
   @(:phase mytaps)
   )
-
-
-
 
 
 (def pats {
@@ -98,7 +121,7 @@
      (let [new-t (+ curr-t sep-t)]
        (apply-by new-t #'live-sequencer [new-t sep-t live-patterns (inc beat)]))))
 
-(live-sequencer (now) 2050 live-pats)
+;; (live-sequencer (now) 2050 live-pats)
 
-
-(stop)
+;; (kill 1)
+;; (stop)

@@ -13,7 +13,8 @@
   ^:dynamic
   *taps* nil)
 
-
+(defn savef []
+  (q/save-frame "pretty-pic-####.jpg"))
 
 ;; start tapping the main stereo output bus.
 (defn init-taps
@@ -43,7 +44,7 @@
   [] (when *taps*
        (into {} (map (fn [[k v]] [k @v]) *taps*))))
 
-;; (get-taps)
+(get-taps)
 
 
 (defn- scale-in
@@ -67,6 +68,8 @@
    :angle 0})
 
 (def c100 (seq->stream (cycle-between 0 100 1 100)))
+(c100)
+
 
 
 (defn update [state]
@@ -177,10 +180,25 @@
 
   (drop 14 (take 15 (fib 0 1)))
 
-  (q/width)
+;;   (q/width)
+  (def repsize 8)
+  repsize
+
+
+  (defn dorect [size]
+    (q/rect size size size size)
+    (q/line  )
+
+    q/state
+
+;;     q/sin  q/radians
+;;     (q/curve 5 26 73 24 73 61 15 65 )
+     (q/curve-tightness 2)
+;;     :curve-tightness 5
+    )
 
 (defn draw [state]
-  (q/background 5)
+  (q/background 255)
 ;;   (randline state 100)
 ;;   (dotimes [n 10] (reduce (fn [a b] (q/line (* a 5) (* b 10) (* a 10) (* b 3)))  [50 10 3 4]))
 
@@ -191,16 +209,20 @@
 ;; ;;      (q/line 0 50 100 100)])
 ;;       [(drawline state a)])
   (q/fill 255 255 255 18)
-  (q/rect 0 0 100 100)
-  (q/rect 50 50 100 100)
+;;   (q/rect 0 0 100 100)
+;;   (q/rect 50 50 100 100)
 
+  (q/stroke 255 0 0 )
+  (dotimes [n repsize]  (dorect (nth (take repsize (fib 0 1)) n) ) )
+  (q/stroke 0 0 255)
+  (dotimes [n repsize]  (dorect (nth (take repsize [2 25 66 88 45 48 445 255 12 ]) n) ) )
 
 
   (dotimes [n (int  (/  (c100) 10))] (q/rect (* (/ (q/width) (+ (c100) 1)) n) 0 (* (:color state) (/ (q/width) 80)) (q/height) ))
   (dotimes [n 4] (q/rect  0 (* (/ (q/height) 4) n)  (q/width) (* (:color state) (/ (q/height) 80))  ))
 
 
-  (q/stroke 255)
+  (q/stroke 255 128 2)
 ;;   (dotimes [n 15] (q/line (drop (+ n 1)(take (+ n 2) (fib 0 1))   )0 ))
 
 ;;   (for [x (take 15 (fib 0 1))
@@ -210,15 +232,16 @@
 ;;   (reduce linereduce (take 15 (fib 2 1)) )
 ;;   (dotimes [n (:size state)](randline state (* 50 n)))
 
-;;   (q/fill 153)
-;;   (q/stroke 255 255 255 )
-;;   (q/box 20 100 20)
+
 
   (q/with-translation [(/ (q/width) 3) (/ (q/height) 2)]
+    (q/fill 153)
+  (q/stroke 255 255 255 )
+  (q/box 2 100 20)
 ;;    (draw-plot f 0 100 0.01))
    (q/with-translation [(- (/ (q/width) 5) 100) (- (/ (q/height) 5) 500)]
     (q/stroke 255 1 255)
-    (dotimes [n 500] (q/line  (* n (:color state)) (* n 10) (* n 40) (* n 100)))
+      (dotimes [n 50] (q/line  (* n (:color state)) (* n 10) (* n 40) (* n 100)))
 
     )
 
@@ -240,13 +263,31 @@
 
 ;;   (into vx1 vx2 vx3)
 ;;   (dotimes [n 4] (q/rect (* n (/ q/width n)) 0 (* n (/ q/width n)) q/height))
+   (q/stroke 0 0 0)
+;;   (doseq [t (range 0 (* 10(:color state)) 0.01)]
+    (doseq [t (range 0 100 0.01)]
+    (q/point (* t (q/tan t))
+             (* (* 2 t) (q/cos t)))
+
+    )
 
   )
+
+
+
+  )
+
+
+
+(defn key-press [a b]
+  (savef)
+  )
+
 
 ;; (take 5 (range 10))
 (q/defsketch hello-quil
   :title "You spin my circle right round"
-  :size [500 500]
+  :size [594 840]
   ; setup function called only once, during sketch initialization.
   :setup setup
   ; update is called on each iteration before draw is called.
@@ -258,6 +299,7 @@
   ; Check quil wiki for more info about middlewares and particularly
   ; fun-mode.
   :middleware [m/fun-mode]
+;;   :key-pressed   key-press
 ;;   :middleware [m/fun-mode m/navigation-3d]
 ;;   :middleware [show-frame-rate]
   )

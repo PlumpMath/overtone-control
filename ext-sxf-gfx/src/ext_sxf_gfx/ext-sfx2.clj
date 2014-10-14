@@ -74,6 +74,8 @@
     ))
 
 
+(fm)
+
 (defsynth fmtones [carrier 880 divisor 10.0 depth 8.0 out-bus 0]
   (let [modulator (/ carrier divisor)
         mod-env (env-gen (lin -0.2 0.4 0.8))
@@ -90,7 +92,7 @@
 
 
 
-(swap! live-pats assoc fmtones [0 0 f a g 0 0 0 0 0 0 0 k 0 k 0 0 0 e e e c d 0 0])
+(swap! live-pats assoc fmtones [0 0 f a g 0 0 a b d e a 0 k 0 k 0 0 0 e e e c d 0 0])
 (swap! live-pats assoc fmtones [0])
 
 
@@ -207,10 +209,16 @@
 
 (def metro (metronome 200))
 
+player-pool
+
+(stop-player chord-progression-beat)
+(show-schedule)
+(stop-player chord-progression-beat player-pool)
 
 (chord-progression-beat metro (metro))
+(show-schedule)
 
-;; (kill 1)
+(kill-player 6016)
 ;; (stop)
 
 ;; for sending the beatnumber over to quil!
@@ -220,7 +228,7 @@
 ;;         (apply-by (nome (inc beat)) beat2quil nome [])
 ;;       ))
 
-
+(metro)
 ; turn on sender
 ;; (beat2quil metro)
 ;; (stop)
@@ -239,6 +247,8 @@
 ;; (__BUS-MIXERS__)
 ;; (out-bus-mixer)
 ;; (kill out-bus-mixer)
+
+(take 15 (hasher 1.9))
 
 
 ;; (fx-freeverb 0 0.5 0.9 0.5)
