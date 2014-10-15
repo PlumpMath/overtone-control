@@ -93,7 +93,7 @@
 ;;   (q/text-size 50)
 ;;   (q/text "H.euristic" 100 100)
 ;;   (q/text "AL.gorithmic" 100 200)
-;;   (q/text "I.ntelligent" 100 300)
+;;   (q/text "I.nteractive" 100 300)
 ;;   (q/text "C.ontrollers" 100 400)
 ;;   (def keywords ["humans", "machines", "interaction"])
 ;; ;; while explaining halic, make some sound, and map a tap on the color, showing the interactive part
@@ -120,6 +120,8 @@
 (fitimage "resources/moog.jpg")
 (def keywords ["live" "tool" "or" "instrument"])
 ;;
+
+
 
 ;; ;; == clojure ==
 ;; (def keywords ["lambda-calculus" "functional programming"])
