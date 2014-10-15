@@ -72,6 +72,7 @@
   )
 
 
+(def img (ref nil))
 (defn fitimage [src]
   (dosync (ref-set img (q/load-image src)))
   (if (<= (/ (. @img width) (. @img height)) ratio)
@@ -79,9 +80,6 @@
     (q/image @img 0 (/ (- Height (* (/ Width (. @img width)) (. @img height))) 2) (* (/ Width (. @img width)) (. @img width)) (* (/ Width (. @img width)) (. @img height)) )
    )
 )
-
-
-(def img (ref nil))
 
 (defn draw [state]
   (q/background 0)
@@ -98,6 +96,10 @@
 ;;   (def keywords ["humans", "machines", "interaction"])
 ;; ;; while explaining halic, make some sound, and map a tap on the color, showing the interactive part
 
+;; ==== H ====
+;;   stands for humans
+;;   (q/text-size 500)
+;;   (q/text "H" 100 600)
 
 ;; === humans: kaosbeat & bohrbug ===
 ;;   (fitimage "resources/halic.jpg")
@@ -111,15 +113,21 @@
 ;; (fitimage somepic.jpg)
 ;; (def keywords ["describe" "yourself" "in" "keywords" ])
 
+;; ==== AL ====
+;;   stands for alien
+  (q/text-size 400)
+  (q/text "AL" 50 550)
+  (def keywords (["alien" "data" "unknown/untrusted source" "machines"]))
 ;; === philosophy ===
 ;;   (fitimage "resources/control_room.jpg")
 ;;   (heading "Control the galaxy")
 
 
 ;; ;; === livecoding ===
-(fitimage "resources/moog.jpg")
-(def keywords ["live" "tool" "or" "instrument"])
+;; (fitimage "resources/moog.jpg")
+;; (def keywords ["live" "tool" "or" "instrument"])
 ;;
+
 
 
 
