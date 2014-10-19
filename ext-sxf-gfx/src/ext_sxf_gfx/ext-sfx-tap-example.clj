@@ -1,4 +1,5 @@
 (ns ext-sxf-gfx.core
+  (:require [overtone.osc :as osc])
 ;; connect to the project using this namespace
   )
 
@@ -29,12 +30,13 @@
 ;; for sending the beatnumber over to quil!
 (defn beat2quil [nome ]
     (let [beat (nome)]
-        (apply-by (nome (inc beat)) (osc-send client "/beat" beat))
+        (apply-by (nome (inc beat)) (osc/osc-send Sclient "/beat" beat))
         (apply-by (nome (inc beat)) beat2quil nome [])
       ))
 
 (beat2quil metro)
 (:beatnum @beat)
+
 
 ;;    _______     ___   _ _______ _    _  _____
 ;;   / ____\ \   / / \ | |__   __| |  | |/ ____|
