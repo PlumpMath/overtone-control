@@ -66,9 +66,21 @@
 (defn heading [h]
   (q/fill 0)
   (q/rect 100 100 400 -50)
-  (q/fill 255 255 0)
+  (q/fill 255 128 128)
   (q/text-size 50)
   (q/text h 100 100)
+  )
+(defn imgcredit [ic]
+  (q/fill 255)
+  (q/text-size 12)
+  (q/text (str "image credit " ic) 10 800)
+  )
+
+(defn twittername [t]
+  (q/fill 255)
+  (q/text-size 20)
+  (q/text t 10 800)
+
   )
 
 
@@ -87,17 +99,18 @@
 ;; ====== Introduction =======
 
 ;; === HALIC ===
-;;   (q/fill 255 255 0)
-;;   (q/text-size 50)
-;;   (q/text "H.euristic" 100 100)
-;;   (q/text "AL.gorithmic" 100 200)
-;;   (q/text "I.nteractive" 100 300)
-;;   (q/text "C.ontrollers" 100 400)
-;;   (def keywords ["humans", "machines", "interaction"])
+  (q/fill 255 255 0)
+  (q/text-size 50)
+  (q/text "H.euristic" 100 100)
+  (q/text "AL.gorithmic" 100 200)
+  (q/text "I.nteractive" 100 300)
+  (q/text "C.ontrollers" 100 400)
+  (def key words ["humans", "machines", "interaction"])
 ;; ;; while explaining halic, make some sound, and map a tap on the color, showing the interactive part
 
 ;; ==== H ====
-;;   stands for humans
+;;   stands for human
+
 ;;   (q/text-size 500)
 ;;   (q/text "H" 100 600)
 
@@ -107,6 +120,8 @@
 ;; = kaosbeat =
 ;; (fitimage "resources/kaos.png")
 ;; (heading "Hi There!")
+;; (twittername "@kaosbeat")
+
 ;; (def keywords ["Architect" "@kaosbeat" "creative technologist"])
 
 ;; = bohrbug =
@@ -115,9 +130,14 @@
 
 ;; ==== AL ====
 ;;   stands for alien
-  (q/text-size 400)
-  (q/text "AL" 50 550)
-  (def keywords (["alien" "data" "unknown/untrusted source" "machines"]))
+
+;;   (fitimage "resources/Fincollo.jpg")
+;;   (imgcredit "http://culprittech.blogspot.be/")
+;;   (q/text-size 400)
+;; ;;   (q/text "AL" 50 550)
+;;   (def keywords (["alien" "data" "unknown/untrusted source" "machines"]))
+
+
 ;; === philosophy ===
 ;;   (fitimage "resources/control_room.jpg")
 ;;   (heading "Control the galaxy")
@@ -145,7 +165,7 @@
   :setup setup
   :update update
   :draw draw
-  :renderer :p3d
+;;   :renderer :p3d
   :middleware [m/fun-mode]
 
   )

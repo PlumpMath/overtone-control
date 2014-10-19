@@ -26,7 +26,8 @@
   (let [modulator (/ carrier divisor)
         mod-env (env-gen (lin 1.9 3.8 -2.8))
         amp-env (env-gen (lin 1 0 4.0 1) :action FREE)
-        filt (rlpf (+ carrier modulator ) 100 0.1)]
+        filt (rlpf (+ carrier modulator ) 100 0.1)
+        _ (tap :mod-env 30 mod-env)]
     (out out-bus  (pan2 (* 0.15 amp-env
                           (sin-osc (+ carrier
                                       (* mod-env (* carrier depth) (sin-osc modulator))))))
@@ -36,7 +37,9 @@
     )))
 
 
-(fm 300 2 4 0)
+(def qfm (:taps (fm 300 2 4 0)))
+
+@(:mod-env qfm )
 
 
 (defsynth fmtones [carrier 880 divisor 10.0 depth 8.0 out-bus 0]
@@ -56,7 +59,7 @@
 (fmtones)
 
 (definst trem [freq 440 depth 10 rate 6 length 3]
-;;     (tap :saw-freq 30 freq)
+
     (out [0 1] (* 0.3
        (line:kr 0 1 length FREE)
        (saw (+ freq (* depth (sin-osc:kr rate))))
@@ -77,14 +80,14 @@
     (tap :right 10 right)
     (tap :phase 10 (- left right))))
 
-(tapper )
+(tapper)
 
-(comment
-  (def mytaps (:taps (tapper)))
-  @(:left mytaps)
-  @(:right mytaps)
-  @(:phase mytaps)
-  )
+;; (comment
+;;   (def mytaps (:taps (tapper)))
+;;   @(:left mytaps)
+;;   @(:right mytaps)
+;;   @(:phase mytaps)
+;;   )
 
 
 (def pats {
