@@ -171,46 +171,46 @@
 
 
 
-=== lambdasonic promo ===
-=== halic === (D + K)
-stands for
-halic is ons project.
-Heuristic, Algorithmic, interactive, computing
-a search for music and sound synesthesia
+;; === lambdasonic promo ===
+;; === halic === (D + K)
+;; stands for
+;; halic is ons project.
+;; Heuristic, Algorithmic, interactive, computing
+;; a search for music and sound synesthesia
 
-=== humans ===
-kaosbeat/bohrbug (D + K)
+;; === humans ===
+;; kaosbeat/bohrbug (D + K)
 
-=== why even consider humans, they are weak === (K)
-Kasparov => human + computers = good
+;; === why even consider humans, they are weak === (K)
+;; Kasparov => human + computers = good
 
-=== HAL is not (good) enough === (K)
-it's not intuition
-aesthaetics
+;; === HAL is not (good) enough === (K)
+;; it's not intuition
+;; aesthaetics
 
-=== HAL is not interactive computation (K)
-computer as an instrument, not a tool
-deep blue is not an instrument, but a tool
+;; === HAL is not interactive computation (K)
+;; computer as an instrument, not a tool
+;; deep blue is not an instrument, but a tool
 
-=== the moog is an instrument (compare) (K -> D)
-interactive music making, analog live coding
+;; === the moog is an instrument (compare) (K -> D)
+;; interactive music making, analog live coding
 
-=== waarom dan geen moog? computers kunnenm nog net iets meer?  (D)
-geluid = heel goed, maar compositie was nog pover
+;; === waarom dan geen moog? computers kunnenm nog net iets meer?  (D)
+;; geluid = heel goed, maar compositie was nog pover
 
-=== composing? -> symbolic composer (D)
-not good enough (geen improvisatie)
+;; === composing? -> symbolic composer (D)
+;; not good enough (geen improvisatie)
 
-=== composing and improvising with machines (D)
+;; === composing and improvising with machines (D)
 
-=== tools (K)
-Pure data / max -> Lighttable / Emacs
-dichter bij de machine
+;; === tools (K)
+;; Pure data / max -> Lighttable / Emacs
+;; dichter bij de machine
 
-=== because bytecode, because JVM inject, lambda-calculus
+;; === because bytecode, because JVM inject, lambda-calculus
 
 
-=== go R
+;; === go R
 
 
 
