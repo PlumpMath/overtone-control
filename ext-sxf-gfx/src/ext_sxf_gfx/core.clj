@@ -1,8 +1,8 @@
 (ns ext-sxf-gfx.core
-  (:use [overtone.core]  ;;if this is on, will use external server!!!
+  (:use [overtone.live]  ;;if this is on, will use external server!!!
        ))
 
-(connect-external-server 57110)
+;; (connect-external-server 57110)
 
 
 
