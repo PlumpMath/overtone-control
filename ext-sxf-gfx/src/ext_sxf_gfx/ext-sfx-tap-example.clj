@@ -60,7 +60,7 @@
 
 ;; run an instance of the synth
 
-(vvv)
+;; (vvv)
 ;; kill it if you have to
 (kill vvv)
 
@@ -74,7 +74,6 @@
 ;; start tapping
 
   (def mytaps (:taps (vvv)))
-
 
 ;;   @(:a mytaps)
 
