@@ -1,10 +1,8 @@
 (ns dodhalic.sfxcore
-  (:require [dodhalic.core])
-  (:use [overtone.live])
+  (:require [overtone.live :refer :all])
+;;   (:require [dodhalic.core :refer :all])
+  (:require [overtone.osc :as osc])
         )
-
-;;; everything that is dependency for live code to come...
-
 ;; connect to the project using this namespace
 
 
@@ -17,7 +15,6 @@
 
 
 
-
 ;;bidirectional comms
 (def SrPORT 4243)
 ;; ; start a server and create a client to talk with it
@@ -25,7 +22,6 @@
 ;; (osc/osc-close Sserver)
 (def SsPORT 4242)
 (def Sclient (osc/osc-client "localhost" SsPORT))
-
 
 
 
@@ -43,3 +39,4 @@
 (:beatnum @beat)
 
 
+beat

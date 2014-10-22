@@ -1,5 +1,4 @@
 (ns dodhalic.sfxcore
-  (:require [dodhalic.core])
   )
 
 
@@ -9,7 +8,6 @@
 ;;   \___ \  \   / | . ` |  | |  |  __  |\___ \
 ;;   ____) |  | |  | |\  |  | |  | |  | |____) |
 ;;  |_____/   |_|  |_| \_|  |_|  |_|  |_|_____/
-
 
 
 
@@ -25,6 +23,6 @@
 
 ;; run an instance of the synth
 
-;; (vvv)
+(vvv)
 ;; kill it if you have to
 (kill vvv)
