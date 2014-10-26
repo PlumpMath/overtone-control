@@ -101,6 +101,8 @@ base
 (swap! newt/fields pop)
 (swap! newt/emitters pop)
 
+
+
 (defn mult-add
   "Generate a potential lazy sequence of values which is the result of
    multiplying each s by mul and then adding add. s mul and add may be

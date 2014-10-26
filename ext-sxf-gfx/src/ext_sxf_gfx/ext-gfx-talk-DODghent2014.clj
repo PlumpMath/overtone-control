@@ -93,19 +93,19 @@
    )
 )
 
-(defn draw [state]
-  (q/background 0)
+;; (defn draw [state]
+;;   (q/background 0)
 
 ;; ====== Introduction =======
 
 ;; === HALIC ===
-  (q/fill 255 255 0)
-  (fitimage "resources/control_room.jpg")
-  (q/text-size 50)
-  (q/text "H.euristic" 100 100)
-  (q/text "AL.gorithmic" 100 200)
-  (q/text "I.nteractive" 100 300)
-  (q/text "C.omputing" 100 400)
+;;   (q/fill 255 255 0)
+;;   (fitimage "resources/control_room.jpg")
+;;   (q/text-size 50)
+;;   (q/text "H.euristic" 100 100)
+;;   (q/text "AL.gorithmic" 100 200)
+;;   (q/text "I.nteractive" 100 300)
+;;   (q/text "C.omputing" 100 400)
 ;;   (def keywords ["humans", "machines", "interaction"])
 ;; Ralph McQuarrie concept art for the original Battlestar Galactica series
 
@@ -166,16 +166,34 @@
 ;; ;; == clojure ==
 ;; (def keywords ["lambda-calculus" "functional programming"])
 
+;;   )
+(def parts ["Introduction" "why livecoding" "tools" "posibilities" "showcase"])
+(defn slide [title part]
+  (q/background 0)
+;;   (q/fill)
+;;   (q/rect )
   )
 
+(defn draw [state]
+  (q/background 0)
 
-
+;; ====== Introduction =======
 
 ;; === lambdasonic promo ===
 ;; === halic === (D + K)
+;; === HALIC ===
+  (q/fill 255 255 0)
+  (fitimage "resources/control_room.jpg")
+  (q/text-size 50)
+  (q/text "H.euristic" 100 100)
+  (q/text "AL.gorithmic" 100 200)
+  (q/text "I.nteractive" 100 300)
+  (q/text "C.omputing" 100 400)
+  (imgcredit  "Ralph McQuarrie concept art for the original Battlestar Galactica series")
+
 ;; stands for
 ;; halic is ons project.
-;; Heuristic, Algorithmic, interactive, computing
+;; Heuristic, Algorithmic, interactive, Computing
 ;; a search for music and sound synesthesia
 
 ;; === humans ===
@@ -208,14 +226,35 @@
 ;; dichter bij de machine
 
 ;; === because bytecode, because JVM inject, lambda-calculus
+;; livecoding can take many forms, like I mentioned pure data or analog live coding like the moog.
+;; But what you have just seen/heard is clojure. Clojure is a jar file. A set of classes that gets
+;; loaded and can be executed in a JVM. The REPL is one of these and is an interface to hand of bytecode.
+;; prabably with some way of pointing to exactly where it has to go, but I'm not fully aware of that.
+;; Main thing is it goes inside the running program
+
+;; another thing in Clojure and functional languages like a lot of livecoding languages (Haskell, Tidal, ...)
+;; is the concept of  λ-calculus
+
+;; immutable data parsing big data streams (think logs or IoT datastores where history is important)
+;; you want to pick up where you left of, run your algorithms on ALL the data. Datomic is a clojure
+;; implementation of this concept integrating tools like Lucene and briging the concept  of live
+;; calculated data to production environments.
 
 
 ;; === go R
 
 
+)
+
+(def foo (fn [e] (* 2 e)))
+
+(foo 2)
 
 
 
+
+;; scrubbing example
+;; make if fibonaciable
 
 
 
