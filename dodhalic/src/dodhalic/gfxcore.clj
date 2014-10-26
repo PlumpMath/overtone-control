@@ -1,4 +1,5 @@
 (ns dodhalic.gfxcore
+  (:require [overtone.live :as o])
   (:require [overtone.osc :as osc])
   (:require [quil.core :as q]
             [quil.middleware :as m]
@@ -12,14 +13,13 @@
             )
 
 
-
-
 ;;    _____ ____  __  __ __  __  _____
 ;;   / ____/ __ \|  \/  |  \/  |/ ____|
 ;;  | |   | |  | | \  / | \  / | (___
 ;;  | |   | |  | | |\/| | |\/| |\___ \
 ;;  | |___| |__| | |  | | |  | |____) |
 ;;   \_____\____/|_|  |_|_|  |_|_____/
+
 
 
 
@@ -50,6 +50,46 @@
                                  (reset! beat {:beatnum (first (:args msg))})
                                 ))
 
+;;   _           _          _                   _
+;;  | |         | |        | |                 | |
+;;  | |__   ___ | |__  _ __| |__  _   _  __ _  | |_ __ _ _ __
+;;  | '_ \ / _ \| '_ \| '__| '_ \| | | |/ _` | | __/ _` | '_ \
+;;  | |_) | (_) | | | | |  | |_) | |_| | (_| | | || (_| | |_) |
+;;  |_.__/ \___/|_| |_|_|  |_.__/ \__,_|\__, |  \__\__,_| .__/
+;;                                       __/ |          | |
+;;                                      |___/           |_|
+
+(o/defsynth tapper2
+  []
+  (let [source (o/sound-in 0 1)
+        left (o/select 0 source)
+        right (o/select 1 source)
+        _ (o/tap :left 10 left)
+        _ (o/tap :right 10 right)
+        ]
+       (o/out 0 left)))
+
+   (def t (tapper2))
+
+;;    @(get-in t [:taps :left])
+;;     @(get-in t [:taps :right])
+;;    (- @(get-in t [:taps :left])  @(get-in t [:taps :right]))
+
+;; (defsynth tapper
+;;   []
+;;   (let [source (o/sound-in 0 1)
+;;         left (select 0 source)
+;;         right (select 1 source)]
+;;     (tap :left 10 left)
+;;     (tap :right 10 right)
+;;     (tap :phase 10 (- left right))))
+
+
+;;   (def mytaps (:taps (tapper)))
+;;   @(:left mytaps)
+;;   @(:right mytaps)
+;;   @(:phase mytaps)
+
 ;;    ____  _    _ _____ _            _          __  __
 ;;   / __ \| |  | |_   _| |          | |        / _|/ _|
 ;;  | |  | | |  | | | | | |       ___| |_ _   _| |_| |_
@@ -58,8 +98,8 @@
 ;;   \___\_\\____/|_____|______| |___/\__|\__,_|_| |_|
 
 
-(def width 594)
-(def height 840)
+(def width 1040)
+(def height 1040)
 
 
 
