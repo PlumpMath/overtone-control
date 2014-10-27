@@ -40,8 +40,8 @@
   (mod  (:beatnum @beat) 8)
   )
 
-(defn mod1 []
-  (mod  (:beatnum @beat) 1)
+(defn mod2 []
+  (mod  (:beatnum @beat) 2)
   )
 
 
@@ -66,8 +66,10 @@
         right (o/select 1 source)
         _ (o/tap :left 10 left)
         _ (o/tap :right 10 right)
+        _ (o/tap :phase 10 (- left right))
         ]
-       (o/out 0 left)))
+       (o/out [0 1] [left right])
+    ))
 
    (def t (tapper2))
 
@@ -97,32 +99,41 @@
 ;;  | |__| | |__| |_| |_| |____  \__ \ |_| |_| | | | |
 ;;   \___\_\\____/|_____|______| |___/\__|\__,_|_| |_|
 
+(defn hex-str-to-dec
+  "Convert hex RGB triples to decimal."
+  [s]
+  (map (comp #(Integer/parseInt % 16)
+             (partial apply str))
+       (partition 2 s)))
 
-(def width 1040)
-(def height 1040)
+
+(def Width 1000)
+(def Height 1000)
+(def ratio (/ width height))
+
+
+(hex-str-to-dec "cb4b16")
+
+(def solar-yellow '(181 137 0))
+
+(def solar-magenta '(211 54 130))
 
 
 
 (defn setup []
-  (q/frame-rate 30)
+  (q/frame-rate 3)
 
 )
 
 
 (defn update [state]
-  {; Update sketch state by changing circle color and position.
-  ;;   {:color (mod (+ (:color state) 0.7) 255)
-;; ;;   {:color (* 255 (get (get-taps) :left))
-;;    :angle (+ (:angle state) 0.1)
-;; ;;    :size (* 500 (get (get-taps) :left))
-;;    :c100 (c100)
-    })
+  )
 
 (defn draw [state])
 
-(q/defsketch tapdemo
+(q/defsketch halic
   :title "lambdasonic"
-  :size [width height]
+  :size [Width Height]
   :setup setup
   :update update
   :draw draw
