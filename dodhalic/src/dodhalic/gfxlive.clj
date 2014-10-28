@@ -2,7 +2,7 @@
 
 (mod4)
 ;; (newt/add-field (Vector2D. 280.0 305.0) 100.0)
-(newt/add-emitter (Vector2D. 600.0 20.0) (Vector2D. 0.0 10.0))
+(newt/add-emitter (Vector2D. 200.0 20.0) (Vector2D. 0.0 10.0))
 
 ;; (swap! newt/fields pop)
 ;; (swap! newt/emitters pop)
@@ -32,16 +32,16 @@ newt/emitters
 
 ;; (swap! newt/emitters assoc :emission-rate 1 )
 
-(swap! newt/emitters update-in [0] assoc :spread)
+;; (swap! newt/emitters update-in [0] assoc :spread)
 
-(swap! newt/emitters update-in [0 :position] assoc :x 500)
+(swap! newt/emitters update-in [0 :position] assoc :x 350)
 ;; (swap!(nth @newt/emitters 0) assoc-in {:position {:x 100}})
 
 (defn update [state]
   ;;update statemap here
   (swap! newt/emitters update-in [0] assoc :emission-rate (mod4))
   (newt/add-new-particles)
-  (newt/update-particles width height)
+  (newt/update-particles Width Height)
 ;;   (swap! newt/emitters update-in [0 :position :x] + 0)
   {
    :left @(get-in t [:taps :left])
@@ -70,7 +70,7 @@ newt/emitters
       (q/box 5 )
       (q/stroke-weight 3)
       (q/stroke 255 255 255)
-      (q/box 50)
+      (q/box (q/random 50))
 
       )
 ;;     (q/line x y (+ x 200) (* (+ y 200) (mod4)))
@@ -89,7 +89,7 @@ newt/emitters
 (defn draw [state]
   (q/perspective)
 ;;   (q/camera 250 800 10 20 2500 0 1 1 1)
-  (q/camera 499 702 -1 500 514 104 0 -1 0 )
+  (q/camera 494 884 24 500 514 83 0 -1 0 )
 ;;   (q/camera (/ width 2) 1000 50 (/ width (+ (mod4) 1)) 500 0 0 1 0)
   (q/background 0)
 ;;   draw stuff here

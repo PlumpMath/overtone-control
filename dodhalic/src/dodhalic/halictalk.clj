@@ -4,7 +4,7 @@
    :left @(get-in t [:taps :left])
    })
 
-
+@(get-in t [:taps :left])
 ;;       _ _     _       __                  _   _
 ;;      | (_)   | |     / _|                | | (_)
 ;;   ___| |_  __| | ___| |_ _   _ _ __   ___| |_ _  ___  _ __  ___
@@ -69,157 +69,188 @@
 (defn draw [state]
 
 
-;; ====== Introduction =======
+;; ;; ====== Introduction =======
   (setbackground)
   (setfillorange)
   (q/text-size 100)
   (q/text "livecoding:" 30 130)
   (q/text-size 40)
-  (q/text "closing the human-machine feedbackloop" 60 260 )
-
-;; === lambdasonic promo ===
-
-
-;; === halic === (D + K)
-
-  (setbackground)
-  (fitimage "resources/control_room.jpg")
-  (imgcredit  "Ralph McQuarrie concept art for the original Battlestar Galactica series")
+  (q/text "closing the human-machine feedbackloop" 60 260)
+  (q/text "@kaosbeat" 100 950 )
+  (q/text "@bohrbug" 750 950 )
   (setfillyellow)
-  (q/text-size 70)
-  (q/text "HALIC" 30 100)
-;; stands for
+  (q/text "@lambda_sonic" 380 650)
 
-  (q/text-size 50)
-  (q/text "H.euristic" 630 150)
-  (q/text "AL.gorithmic" 630 225)
-  (q/text "I.nteractive" 630 300)
-  (q/text "C.omputing" 630 375)
-
-;; our project
-  (q/text-size 30)
-  (q/text "a search for music and sound synesthesia" 10 880)
-
-;; === humans ===
-;; ;; kaosbeat/bohrbug (D + K)
-  (setbackground)
-  (q/no-stroke)
-  (fitimage "resources/stadslimiet1.jpg")
-  (setfillyellow)
-  (q/text-size 70)
-  (q/text "H = humans" 30 400)
-  (setfillorange)
-  (q/text-size 30)
-  (q/text "@kaosbeat" 400 300 )
-  (q/text "@bohrbug" 480 400 )
-
-;;@kaosbeat
-  (setbackground)
-  (fitimage "resources/teletext.jpg" )
-  (q/text "analog tools/digital output" 190 50)
-  (setbackground)
-  (fitimage "resources/kaos.png")
-  (q/text "analog tools/analog output" 190 50)
-  (setbackground)
-  (fitimage "resources/delvoye.jpg")
-  (q/text "digital tools/analog output" 190 50)
-  (imgcredit "Kasper Jordaens/ 'Delvoye corten steel tower Guggenheim Venice'")
-  (setbackground)
-  (fitimage "resources/nglitchlogo.jpg")
-  (imgcredit "netglitch at HAR2009 by @0xtosh/@kaosbeat")
-  (q/text "digital tools/digital output" 190 50)
-  ;; digital tools, digital output is kinda the point of this talk
-
-;;@bohrbug
-  (setbackground)
-  (fitimage "resources/577523_10200978702328212_558341331_n.jpg")
-  (imgcredit "Tom Van Ghent")
-  (setbackground)
-  (fitimage "resources/atari_mega-ste_2.jpg")
-  (q/text "atari mega" 190 50)
-  (setbackground)
-  (fitimage "resources/atariM.l.gif")
-  (q/text "atari M" 190 50)
+;; ;; ;; === lambdasonic promo ===
 
 
+;; ;; ;; === halic === (D + K)
 
-;;AL stands for algorithms
-;;   Deep blue was an algorhitm (K)
-  (setbackground)
-  (fitimage "resources/Deep_Blue.jpg")
-  (imgcredit "James the photographer - http://flickr.com/photos/22453761@N00/592436598/")
-  (setfillyellow)
-  (q/text-size 70)
-  (q/text "AL = Algorithmic" 30 400)
-  (setfillorange)
-  (q/text-size 50)
-  (q/text "supercomputer" 250 100)
-  ;;it's even Deep Blue
+;;   (setbackground)
+;;   (fitimage "resources/control_room.jpg")
+;;   (imgcredit  "Ralph McQuarrie concept art for the original Battlestar Galactica series")
+;;   (setfillyellow)
+;;   (q/text-size 70)
+;;   (q/text "HALIC" 30 100)
+;; ;; ;; stands for
 
-;; === why even consider humans, they are weak === (K)
-;; Kasparov => human + computers = good
-  (setbackground)
-  (fitimage "resources/kasparov_1-021110_jpg_600x722_q85.jpg")
-  (imgcredit "Steve Honda/AFP/Getty Images")
-;;   1997 Kasparov lost from Deep blue
-  (setfillorange)
-  (q/text-size 50)
-  (q/text "human VS. computer" 250 100)
+;;   (q/text-size 50)
+;;   (q/text "H.euristic" 630 150)
+;;   (q/text "AL.gorithmic" 630 225)
+;;   (q/text "I.nteractive" 630 300)
+;;   (q/text "C.omputing" 630 375)
 
-;; === HAL is not (good) enough === (K)
-;; it's not intuition
-;; aesthaetics
-  (setbackground)
-  (fitimage "resources/hal9000.png")
-  (setfillyellow)
-  (q/text-size 70)
-  (q/text "(H)AL is not (good) enough" 30 400)
+;; ;; ;; our project
+;;   (q/text-size 30)
+;;   (q/text "a search for graphical and musical synesthesia" 10 880)
 
+;; ;; ;; === humans ===
+;; ;; ;; ;; kaosbeat/bohrbug (D + K)
+;;   (setbackground)
+;;   (q/no-stroke)
+;;   (fitimage "resources/stadslimiet1.jpg")
+;;   (setfillyellow)
+;;   (q/text-size 70)
+;;   (q/text "H = humans" 30 400)
+;;   (setfillorange)
+;;   (q/text-size 30)
+;;   (q/text "@kaosbeat" 400 300 )
+;;   (q/text "@bohrbug" 480 400 )
+;; ;;   ;;human element at the center of the painting/devops remains @bridgetkromhout #devopsdays
+;; ;;   ;;collaboration, we're all in charge of devops, feedback loop
 
-;; === HAL is not interactive computation (K)
-;; computer as an instrument, not a tool
-;; deep blue is not an instrument, but a tool
-  (setbackground)
-  (fitimage "resources/computer-operator1.jpg")
-  (imgcredit "the internet")
-  (setfillorange)
-  (q/text-size 50)
-  (q/text "interactive tool/instrument" 50 50)
+;; ;; ;;@kaosbeat
+;;   (setbackground)
+;;   (fitimage "resources/iMinds_Mix.jpg")
 
 
-;; === the moog is an instrument (compare) (K -> D)
-;; interactive music making, analog live coding
-  (setbackground)
-  (fitimage "resources/moog.jpg")
-  (imgcredit "the internet")
-  (setfillorange)
-  (q/text-size 50)
-  (q/text "moog: analog love coding" 50 50)
+;;   (fitimage "resources/teletext.jpg" )
+;;   (q/text "analog tools/digital output" 190 50)
+;;   (setbackground)
+;;   (fitimage "resources/kaos.png")
+;;   (q/text "analog tools/analog output" 190 50)
+;;   (setbackground)
+;;   (fitimage "resources/delvoye.jpg")
+;;   (q/text "digital tools/analog output" 190 50)
+;;   (imgcredit "Kasper Jordaens/ 'Delvoye corten steel tower Guggenheim Venice'")
+;;   (setfillorange)
+;;   (q/text-size 30)
+;;   (q/text "can you automate this, can you make a generate artpiece button?" 10 870) ;; generate art vs make art
+;;   (setbackground)
+;;   (fitimage "resources/nglitchlogo.jpg")
+;;   (imgcredit "netglitch at HAR2009 by @0xtosh/@kaosbeat")
+;;   (q/text "digital tools/digital output" 190 50)
+;;   ;; digital tools, digital output is kinda the point of this talk
 
-;; === waarom dan geen moog? computers kunnen nog net iets meer?  (D)
-;; geluid = heel goed, maar compositie was nog pover
+;; ;;@bohrbug
+;;   (setbackground)
+;;   (fitimage "resources/dagodrum.jpg")
+;;   (imgcredit "Tom Van Ghent")
+;;   (setbackground)
+;;   (fitimage "resources/atari_mega-ste_2.jpg")
+;;   (q/text "atari mega" 190 50)
+;;   (setbackground)
+;;   (fitimage "resources/atariM.l.gif")
+;;   (q/text "atari M" 190 50)
+;;   ;; ;; === composing? -> symbolic composer (D)
+;; ;; ;; not good enough (geen improvisatie)
+;;   (setbackground)
+;;   (fitimage "resources/SymbolicComposer.jpg")
+;;   (q/text-size 30)
+;;   (setfillorange)
+;;   (q/text "symbolic composer" 190 50)
+;;   ;; interest
+
+;; ;; ;;AL stands for algorithms
+;; ;; ;;   Deep blue was an algorhitm (K)
+;;   (setbackground)
+;;   (fitimage "resources/Deep_Blue.jpg")
+;;   (imgcredit "James the photographer - http://flickr.com/photos/22453761@N00/592436598/")
+;;   (setfillyellow)
+;;   (q/text-size 70)
+;;   (q/text "AL = Algorithmic" 30 400)
+;;   (setfillorange)
+;;   (q/text-size 50)
+;;   (q/text "supercomputer" 250 100)
+;;   ;;it's even Deep Blue
+
+;; ;; ;; === why even consider humans, they are weak === (K)
+;; ;; ;; Kasparov => human + computers = good
+;;   (setbackground)
+;;   (fitimage "resources/kasparov_1-021110_jpg_600x722_q85.jpg")
+;;   (imgcredit "Steve Honda/AFP/Getty Images")
+;; ;; ;;   1997 Kasparov lost from Deep blue
+;;   (setfillorange)
+;;   (q/text-size 50)
+;;   (q/text "human VS. computer" 250 100)
+
+;; ;; ;; === HAL is not (good) enough === (K)
+;; ;; ;; it's not intuition
+;; ;; ;; aesthaetics
+;;   (setbackground)
+;;   (fitimage "resources/hal9000.png")
+;;   (setfillyellow)
+;;   (q/text-size 70)
+;;   (q/text "(H)AL is not (good) enough" 30 400)
 
 
-;; === composing? -> symbolic composer (D)
-;; not good enough (geen improvisatie)
-  (setbackground)
-  (fitimage "resources/SymbolicComposer.jpg")
-  (q/text "symbolic composer" 190 50)
+;; ;; ;; === HAL is not interactive computation (K)
+;; ;; ;; deep blue is not an instrument, but a tool
+;;   (setbackground)
+;;   (fitimage "resources/computer-operator1.jpg")
+;;   (imgcredit "the internet")
+;;   (setfillorange)
+;;   (q/text-size 50)
+;;   (q/text "interactive tool/instrument" 150 850)
+;; ;; ;; computer as an instrument, not a tool
 
-;; === composing and improvising with machines (D)
-  (setbackground)
-  (fitimage "resources/overtone.mp4-3.png")
-  (q/text "overtone" 190 50)
 
-;; === tools (K)
-;; Pure data / max -> Lighttable / Emacs
-;; dichter bij de machine
-  (setbackground)
-  (fitimage "resources/kaosslicer_pd.jpg")
-  (imgcredit "kaosbeat kaosslicer")
+;; ;; ;; === the moog is an instrument (compare) (K -> D)
+;; ;; ;; interactive music making, analog live coding
+;;   (setbackground)
+;;   (fitimage "resources/moog.jpg")
+;;   (imgcredit "the internet")
+;;   (setfillorange)
+;;   (q/text-size 50)
+;;   (q/text "moog modular: analog livecoding" 50 50)
 
-  (setbackground)
-  (q/text "texteditor: Lighttable / Emacs" 190 50)
+;; ;; ;; === waarom dan geen moog? computers kunnen nog net iets meer?  (D)
+;; ;; ;; geluid = heel goed, maar compositie was nog pover
+;; ;; ;; === tools (K)
+;; ;; ;; Pure data / max -> Lighttable / Emacs
+;; ;; ;; dichter bij de machine
+;;   (setbackground)
+;;   (fitimage "resources/kaosslicer_pd.jpg")
+;;   (setfillorange)
+;;   (q/text-size 30)
+;;   (q/text "Pure Data" 190 50)
+;;   (imgcredit "kaosbeat kaosslicer")
+;;   (q/text-size 70)
+;;   (setfillyellow)
+;;   (q/text "I = Interactive" 40 840)
+
+;; ;; ;; === composing and improvising with machines (D)
+;;   (setbackground)
+;;   (fitimage "resources/overtone.mp4-3.png")
+;;   (q/text "overtone" 90 90)
+;;   (q/text-size 40)
+;;   (setfillorange)
+;;   (q/text "texteditor: Lighttable / Emacs live" 90 750)
+
+
+
+;;   (setbackground)
+;;   (q/text "sketchbook / prototyping tool" 90 50)
+;; ;;   ;;
+;;   (q/stroke 255)
+;;   (q/line 10 890 1120 500)
+;;   (dotimes [n 100]
+;; ;;       (q/line 0 (* n 10) 640 (* n 20))
+;; ;;       (q/line (* 3 (nth (take 103 (fib 0 1)) n)) 0 (nth (take 100 (fib 0 1)) n) 1000)
+;; ;;       (q/line (* 5000 (:left state)) (* n 10) 1000 (* n 10))
+;;     )
+
+
 
 
 ;; === because bytecode, because JVM inject, lambda-calculus
@@ -236,6 +267,12 @@
 ;; you want to pick up where you left of, run your algorithms on ALL the data. Datomic is a clojure
 ;; implementation of this concept integrating tools like Lucene and briging the concept  of live
 ;; calculated data to production environments.
+
+;;   (setbackground)
+;;   (q/stroke 255)
+;;   (q/line 10 10 500 500)
+
+;;   (q/box 120)
 
 
 ;; === go R

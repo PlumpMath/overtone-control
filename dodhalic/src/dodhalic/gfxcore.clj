@@ -109,7 +109,7 @@
 
 (def Width 1000)
 (def Height 1000)
-(def ratio (/ width height))
+(def ratio (/ Width Height))
 
 
 (hex-str-to-dec "cb4b16")
@@ -118,10 +118,11 @@
 
 (def solar-magenta '(211 54 130))
 
-
+(defn fib [a b] (cons a (lazy-seq (fib b (+ b a)))))
+ (take 5 (fib 0 1))
 
 (defn setup []
-  (q/frame-rate 3)
+  (q/frame-rate 30)
 
 )
 
@@ -137,7 +138,7 @@
   :setup setup
   :update update
   :draw draw
-  :renderer :p3d
+  :renderer :p2d
   :middleware [m/fun-mode]
 
   )
