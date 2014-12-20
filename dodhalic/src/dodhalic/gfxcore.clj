@@ -28,8 +28,8 @@
 ;; ; start a server and create a client to talk with it
 (def Gserver (osc/osc-server GrPORT))
 ;; (osc/osc-close Gserver)
-(def GsPORT 4243)
-(def Gclient (osc/osc-client "localhost" GsPORT))
+;; (def GsPORT 4243)
+;; (def Gclient (osc/osc-client "localhost" GsPORT))
 
 (def beat (atom {:beatnum 0}))
 (defn mod4 []
@@ -59,6 +59,8 @@
 ;;                                       __/ |          | |
 ;;                                      |___/           |_|
 
+(o/odoc o/sound-in)
+
 (o/defsynth tapper2
   []
   (let [source (o/sound-in 0 1)
@@ -73,24 +75,7 @@
 
    (def t (tapper2))
 
-;;    @(get-in t [:taps :left])
-;;     @(get-in t [:taps :right])
-;;    (- @(get-in t [:taps :left])  @(get-in t [:taps :right]))
 
-;; (defsynth tapper
-;;   []
-;;   (let [source (o/sound-in 0 1)
-;;         left (select 0 source)
-;;         right (select 1 source)]
-;;     (tap :left 10 left)
-;;     (tap :right 10 right)
-;;     (tap :phase 10 (- left right))))
-
-
-;;   (def mytaps (:taps (tapper)))
-;;   @(:left mytaps)
-;;   @(:right mytaps)
-;;   @(:phase mytaps)
 
 ;;    ____  _    _ _____ _            _          __  __
 ;;   / __ \| |  | |_   _| |          | |        / _|/ _|
@@ -138,7 +123,7 @@
   :setup setup
   :update update
   :draw draw
-  :renderer :p2d
+  :renderer :p3d
   :middleware [m/fun-mode]
 
   )
