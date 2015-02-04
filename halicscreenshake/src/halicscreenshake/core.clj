@@ -15,6 +15,9 @@
 
 
 
+
+
+
 ;; gfx helpers
 
 
@@ -54,4 +57,34 @@
   )
 
 ;; (modrandom)
+
+
+
+;;   _           _          _                   _
+;;  | |         | |        | |                 | |
+;;  | |__   ___ | |__  _ __| |__  _   _  __ _  | |_ __ _ _ __
+;;  | '_ \ / _ \| '_ \| '__| '_ \| | | |/ _` | | __/ _` | '_ \
+;;  | |_) | (_) | | | | |  | |_) | |_| | (_| | | || (_| | |_) |
+;;  |_.__/ \___/|_| |_|_|  |_.__/ \__,_|\__, |  \__\__,_| .__/
+;;                                       __/ |          | |
+;;                                      |___/           |_|
+
+;; (o/odoc o/sound-in)
+
+(o/defsynth tapper2
+  []
+  (let [source (o/sound-in 0 1)
+        left (o/select 0 source)
+        right (o/select 1 source)
+        _ (o/tap :left 10 left)
+        _ (o/tap :right 10 right)
+        _ (o/tap :phase 10 (- left right))
+        ]
+       (o/out [0 1] [left right])
+    ))
+
+(def t (tapper2))
+
+
+
 

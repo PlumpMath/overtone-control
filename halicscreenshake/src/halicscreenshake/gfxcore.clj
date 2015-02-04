@@ -68,30 +68,6 @@
 
 
 
-;; ;;   _           _          _                   _
-;;  | |         | |        | |                 | |
-;;  | |__   ___ | |__  _ __| |__  _   _  __ _  | |_ __ _ _ __
-;;  | '_ \ / _ \| '_ \| '__| '_ \| | | |/ _` | | __/ _` | '_ \
-;;  | |_) | (_) | | | | |  | |_) | |_| | (_| | | || (_| | |_) |
-;;  |_.__/ \___/|_| |_|_|  |_.__/ \__,_|\__, |  \__\__,_| .__/
-;;                                       __/ |          | |
-;;                                      |___/           |_|
-
-(o/odoc o/sound-in)
-
-(o/defsynth tapper2
-  []
-  (let [source (o/sound-in 0 1)
-        left (o/select 0 source)
-        right (o/select 1 source)
-        _ (o/tap :left 10 left)
-        _ (o/tap :right 10 right)
-        _ (o/tap :phase 10 (- left right))
-        ]
-       (o/out [0 1] [left right])
-    ))
-
-   (def t (tapper2))
 
 
 
@@ -135,20 +111,24 @@ solar-yellow
 
 
 (defn update [state]
+    {
+   :left @(get-in t [:taps :left])
+   }
   )
+
 
 (defn draw [state]
   (q/background 0)
   (q/stroke 255)
 ;;   (q/rect -500 50 (* 50 (+ 1(mod16))) 50)
-;;   (q/rect 50 500 100 100)
+  (q/rect 50 500  (* 1000 (:left state)) 1)
 ;;   (println "23")
 ;;   (showbeat)
-  (drawdud)
+;;   (drawdud)
   (stuff)
 ;;   (q/camera 0 0 (* 10000 (q/noise  (mod16)))  0 0 0 0 1 0)
 ;;   (q/camera 0 0 0  100 100 100   0 1 0)
-
+(drawP state)
 
   )
 

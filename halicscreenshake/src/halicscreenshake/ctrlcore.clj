@@ -1,6 +1,7 @@
 (ns halicscreenshake.core
   (:use [clojure.core.match :only [match]]
-        [overtone.inst sampled-piano])
+;;         [overtone.inst sampled-piano]
+        )
   (:require [polynome.core :as poly]))
 
 
@@ -41,14 +42,14 @@
 ;; (sampled-piano 1)
 
 
-(poly/col m 1 [0 0 0 ])
+;; (poly/col m 1 [0 0 0 ])
 
-seq1
+;; seq1
 
-(poly/cols m)
+;; (poly/cols m)
 
 
-(poly/led-state m)
+;; (poly/led-state m)
 
 
 (poly/callbacks m)

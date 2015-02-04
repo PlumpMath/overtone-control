@@ -1,8 +1,6 @@
 (ns halicscreenshake.core)
 
-(defn setcam []
 
-        )
 
 ;; (setcam)
 
@@ -34,7 +32,7 @@
 
 ;;     (q/stroke (into [] solar-yellow))
     (dotimes [n 100]
-;;       (q/line 0 (* n 10) 640 (* n 20))
+      (q/line 0 (* n 10) 640 (* n 20))
 ;;       (q/line (* 3 (nth (take 103 (fib 0 1)) n)) 0 (nth (take 100 (fib 0 1)) n) 1000)
 ;;       (q/line (* 5000 (:left state)) (* n 10) 1000 (* n 10))
     )
@@ -55,7 +53,7 @@
            (* (/ (q/width) -12) n)
          )
         (q/with-translation [(* 1000 n) (* 200 (pi2tr)) 0]
-          (q/sphere (* (tr) 50))
+          (q/sphere (* (* 1 1)  50))
           )
 
       )
@@ -72,23 +70,31 @@
 (o/saw)
 
 
-(defn setcam [x y]
-      (q/perspective)
-;;     (q/ortho)
-     (q/camera  (* (/ (q/width) 2) x)
-;;                 (/ (q/height) (* 100 (q/random y)))
-                500
-;;                 (/ (/ (q/height) 2.0) (q/tan (/ (* q/PI 60.0) 360.0)))
-                2000
+(defn drawP [state]
+  (let [particles @newt/particles]
+    (doseq [p particles]
+      (draw-particle p state)))
+)
 
-                (* (/ (q/width) 2 ) x)
-;;                 (/ (q/height) (q/random 10))
-                500
-                0
 
-                0 1 0)
 
-  )
+;; (defn setcam [x y]
+;;       (q/perspective)
+;; ;;     (q/ortho)
+;;      (q/camera  (* (/ (q/width) 2) x)
+;; ;;                 (/ (q/height) (* 100 (q/random y)))
+;;                 500
+;; ;;                 (/ (/ (q/height) 2.0) (q/tan (/ (* q/PI 60.0) 360.0)))
+;;                 2000
+
+;;                 (* (/ (q/width) 2 ) x)
+;; ;;                 (/ (q/height) (q/random 10))
+;;                 500
+;;                 0
+
+;;                 0 1 0)
+
+;;   )
 
 
 
