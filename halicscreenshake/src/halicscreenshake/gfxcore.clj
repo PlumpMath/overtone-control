@@ -1,14 +1,8 @@
 (ns halicscreenshake.core
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [newtonian.particle-system :as newt]
-            [newtonian.utils :as utils]
-            [quil.helpers.calc :refer [mul-add]]
-            [quil.helpers.seqs :refer [seq->stream range-incl cycle-between steps]]
-            [quil.helpers.drawing :refer [line-join-points]]
-            )
-  (:import newtonian.utils.Vector2D)
-            )
+
+))
 
 
 
@@ -33,38 +27,11 @@
 (def Gclient (osc/osc-client "localhost" GsPORT))
 
 
-;;; various helpers
-(def tr (seq->stream (cycle-between 1 1 16 0.1 15)))
-
-(def pi2tr (seq->stream (cycle-between 0 0  6.28 0.01 0.01)))
-
-(pi2tr)
 
 (osc/osc-handle Gserver "/beat" (fn [msg]
 ;;                                 (println (:args msg))
                                  (reset! beat {:beatnum (first (:args msg))})
                                 ))
-
-
-;;Camera
-
-(defn setcam [x y]
-     (q/camera    (/ (q/width) x)
-                  (/ (q/height) y)
-                  (/ (/ (q/height) 2.0) (q/tan (/ (* q/PI 60.0) 360.0)))
-
-                  (/ (q/width) x)
-                  (/ (q/height) 2.0)
-                  0
-
-                  0
-                  1
-                  0
-                  )
-
-  )
-
-;; (setcam 1 5)
 
 
 
@@ -101,8 +68,6 @@ solar-yellow
 
 (def solar-magenta '(211 54 130))
 
-(defn fib [a b] (cons a (lazy-seq (fib b (+ b a)))))
- (take 5 (fib 0 1))
 
 (defn setup []
   (q/frame-rate 30)
@@ -111,6 +76,9 @@ solar-yellow
 
 
 (defn update [state]
+;;   (newt/add-new-particles)
+;;   (newt/update-particles Width Height)
+
     {
    :left @(get-in t [:taps :left])
    }
@@ -120,15 +88,33 @@ solar-yellow
 (defn draw [state]
   (q/background 0)
   (q/stroke 255)
+  (q/line 50 50 500 500)
+;;   (defaultcam)
+;;   (changeemitspeed (mod4) 0)
+;;   (changeemitspeed (+ (mod4) 1) 1)
+
+;;   (changeemitspread 2 1)
+;;   (draw1 (q/abs (:left state)))
+
+;;   (setcam 100 100)
 ;;   (q/rect -500 50 (* 50 (+ 1(mod16))) 50)
-  (q/rect 50 500  (* 1000 (:left state)) 1)
+;;   (q/rect 50 500  (* 10000 (q/abs (:left state))) 10)
 ;;   (println "23")
-;;   (showbeat)
 ;;   (drawdud)
-  (stuff)
+;;   (stuff)
 ;;   (q/camera 0 0 (* 10000 (q/noise  (mod16)))  0 0 0 0 1 0)
-;;   (q/camera 0 0 0  100 100 100   0 1 0)
-(drawP state)
+  (q/camera 500 500 (* (pi2tr) 500)  500 500 0   (pi2tr) 1 0)
+;;     (q/with-translation [ (/ (q/width) 2) (/ (q/height) 2) 0]
+;;     (q/with-rotation [q/PI]
+     (q/box 50)
+
+;;       (drawP state)
+;;     )
+;;       )
+
+  (if (= 3 (mod2))
+    (q/display-filter :blur 1)
+    )
 
   )
 

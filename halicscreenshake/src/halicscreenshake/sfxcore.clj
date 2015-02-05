@@ -28,7 +28,7 @@
 ;; send the beat out!
 (def beat (atom {:beatnum 0}))
 (def metro (metronome 200))
-(metro :bpm 100)
+(metro :bpm 240)
 ;; for sending the beatnumber over to quil!
 (defn beat2quil [nome ]
     (let [beat (nome)]

@@ -62,39 +62,16 @@
 
 
 (defn draw1 [x]
-  (q/with-translation (* x (/ (q/width) 2)) 0 0)
-  (q/rect 0 0 50 166)
+;;   (q/with-translation [(* x (/ (q/width) 2)) 0 0]
+      (dotimes [n 16]
+        (q/rect (* 500 (* n x)) 0 50 100)
+      )
+;;     )
+
   )
 
 
-(o/saw)
 
-
-(defn drawP [state]
-  (let [particles @newt/particles]
-    (doseq [p particles]
-      (draw-particle p state)))
-)
-
-
-
-;; (defn setcam [x y]
-;;       (q/perspective)
-;; ;;     (q/ortho)
-;;      (q/camera  (* (/ (q/width) 2) x)
-;; ;;                 (/ (q/height) (* 100 (q/random y)))
-;;                 500
-;; ;;                 (/ (/ (q/height) 2.0) (q/tan (/ (* q/PI 60.0) 360.0)))
-;;                 2000
-
-;;                 (* (/ (q/width) 2 ) x)
-;; ;;                 (/ (q/height) (q/random 10))
-;;                 500
-;;                 0
-
-;;                 0 1 0)
-
-;;   )
 
 
 
