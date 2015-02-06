@@ -7,20 +7,51 @@
 ;; (q/noise 1 1) ;; needs to be inside draw
 
 (tr)
-(def seq1 [0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 0 0])
+(def seq10 [0 0 1 0 1 0 1 0 1 0])
+(def seq8  [0 1 0 0 0 0 0 1])
+(nth seq10 1)
+(def rot)
 
+
+rot
 
 (nth seq1 15)
 
-(defn drawdud []
-  (dotimes [n 100]
-    (q/with-translation [0 (* n 100) 0]
-      (q/stroke 255 20 0)
-;;       (q/box (* 1 50))
-      )
-  )
-  )
+(defn drawdud [state]
+;;    (orangefill 128)
+  (pinkfill 128)
+   (q/fill 255 120 26 128)
+  (q/with-translation [50 50 0]
+  (dotimes [n 10]
+    (if (= (nth seq10 n) 1)
 
+                    (q/with-translation [(* n 100) 0  0]
+                       (dotimes [m 10]
+                        (q/with-translation [0 (* m 100)  0]
+                           (if (= (mod2) 1)
+                            (def rot  (pi2tr))
+                            (def rot 0)
+                            )
+
+                          (q/with-rotation [ rot (tr) 1 0 ]
+                            (q/stroke-weight (* (:left state) 10))
+                            (q/stroke 255 20 0 128)
+                            (q/box (* (:left state) 500))
+                            (q/line 0 0 1000 0)
+                            (q/stroke 0 222 22 128)
+
+                            (q/line 0 0 0 1000)
+                          )
+                        )
+                      )
+                    )
+
+
+      ()
+    )
+      )
+    )
+)
 
 (defn stuff []
   (setcam (+ 1 (mod16)) 160)
