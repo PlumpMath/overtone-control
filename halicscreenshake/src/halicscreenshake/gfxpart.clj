@@ -6,15 +6,15 @@
   )
 
 
-(newt/add-field (Vector2D. 500 500) 1000)
-(newt/add-emitter (Vector2D. 800 50) (Vector2D. 0 100))
+;; (newt/add-field (Vector2D. 100 500) 1000)
+(newt/add-emitter (Vector2D. 200 500) (Vector2D. 0 100))
 
 
 ;; (newt/add-emitter (Vector2D. 650 50) (Vector2D. 0 100))
 
 
 @newt/emitters
-(swap! newt/fields pop)
+;; (swap! newt/fields pop)
 
 
 (defn draw-particle [{:keys [position velocity accel]} state]
@@ -31,10 +31,10 @@
     (q/no-stroke)
     (q/rect x y (* 1 100) (* (:left state) 500))
 ;;     (q/rect x y -65 65)
-;;     (q/with-translation [ 50 50 ]
+    (q/with-translation [ x y ]
 ;;        (changepos 0 (/ 1000 (+ (mod16) 1)) 600)
-        (q/box 50)
-;;     )
+;;         (q/box 50)
+    )
 
 ;;     (q/line 0 y (* (+ 1 (mod4)) y)  y)
 
@@ -89,10 +89,10 @@
   (swap! newt/emitters update-in [emitterindex] assoc :spread spread)
   )
 
-
-(changespeed 0 0 3)
-(changeemitspeed 0 0)
-(changeemitspread 0 0.3)
+(changepos 2 600 0)
+(changespeed 0 0 (+ 200 (q/random 10)))
+(changeemitspeed 0 1)
+(changeemitspread 0 0)
 
 
 (get (nth @newt/emitters 0) :position)

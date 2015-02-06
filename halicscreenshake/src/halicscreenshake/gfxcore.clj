@@ -87,9 +87,20 @@ solar-yellow
 
 (defn draw [state]
   (q/background 0)
-  (q/stroke 255)
+  (q/stroke 255 255 0)
   (q/line 50 50 500 500)
 ;;   (defaultcam)
+;;   (changespeed 0 0 (+ 200 (q/random 10)))
+
+;;   (doseq [pos [seq1]]
+;;               (q/with-translation [0 (* (q/random 500) pos) 0]
+;;                 (q/box 50)
+;;                 )
+;;               )
+
+;;   (setcam 500 0)
+;;   (q/ortho)
+;;   (q/perspective)
 ;;   (changeemitspeed (mod4) 0)
 ;;   (changeemitspeed (+ (mod4) 1) 1)
 
@@ -103,14 +114,17 @@ solar-yellow
 ;;   (drawdud)
 ;;   (stuff)
 ;;   (q/camera 0 0 (* 10000 (q/noise  (mod16)))  0 0 0 0 1 0)
-  (q/camera 500 500 (* (pi2tr) 500)  500 500 0   (pi2tr) 1 0)
-;;     (q/with-translation [ (/ (q/width) 2) (/ (q/height) 2) 0]
-;;     (q/with-rotation [q/PI]
+;;   (q/camera 500 500 (* (pi2tr) 500)  500 500 0   (pi2tr) 1 0)
+
+  (q/camera 1000 0 10 500 500 100 0 1 0)
+
+    (q/with-translation [ (/ (q/width) 2) (/ (q/height) 2) 0]
+    (q/with-rotation [(* 3.14 0.5) 1 0 0 ]
      (q/box 50)
 
 ;;       (drawP state)
-;;     )
-;;       )
+    )
+      )
 
   (if (= 3 (mod2))
     (q/display-filter :blur 1)

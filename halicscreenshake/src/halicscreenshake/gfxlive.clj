@@ -62,11 +62,16 @@
 
 
 (defn draw1 [x]
-;;   (q/with-translation [(* x (/ (q/width) 2)) 0 0]
+  (q/with-translation [(* x (/ (q/width) 2)) 0 0]
       (dotimes [n 16]
         (q/rect (* 500 (* n x)) 0 50 100)
       )
-;;     )
+    )
+  (q/stroke 255)
+  (dotimes [n 100]
+    (q/line 0 (* n (mod4)) 1000 (* n 100))
+
+    )
 
   )
 
