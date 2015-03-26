@@ -102,8 +102,15 @@
 ;; (setcam 1 5)
 
 
+;;colors
+(defn orangefill [alpha]
+  (q/fill 255 120 26 alpha)
+)
 
 
+(defn pinkfill [alpha]
+  (q/fill 255 0 125 alpha)
+)
 
 ;;                   _   _      _
 ;;                  | | (_)    | |

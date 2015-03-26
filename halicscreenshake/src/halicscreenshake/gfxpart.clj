@@ -18,30 +18,42 @@
 
 
 (defn draw-particle [{:keys [position velocity accel]} state]
+ (q/with-translation [ 0 100  ]
+  (q/with-rotation [1 1 0 0]
   (let [x (:x position)
-        y (:y position)]
+        y (:y position)
+        z 5]
 
 
 ;;     (println x)
 ;;     (q/no-fill)
-    (q/fill 255 (* 1 (q/random 255) ) 255 18)
+    (q/fill 0 (* 1 (q/random 255) ) 255 188)
 ;;     (q/fill (* y 0.5) (* y 0.3) 0 0.5)
 ;;     (q/stroke-weight (* y 0.003))
 ;;     (q/stroke 255 0 0 )
     (q/no-stroke)
-    (q/rect x y (* 1 100) (* (:left state) 500))
-;;     (q/rect x y -65 65)
-    (q/with-translation [ x y ]
+    (q/rect x y (* 1 100) (* (:left state) 5000))
+
+
+    (q/with-translation [ x y z ]
+      (q/with-rotation [(/ 3.14 2) 1 0 0]
+      (q/no-fill)
+      (q/stroke (* 10 25))
+      (q/stroke-weight 2)
+      (q/rect 0 0 250 250)
+      )
 ;;        (changepos 0 (/ 1000 (+ (mod16) 1)) 600)
-;;         (q/box 50)
+        (q/box 5)
     )
 
 ;;     (q/line 0 y (* (+ 1 (mod4)) y)  y)
 
 
     )
-  )
 
+    )
+   )
+)
 (defn draw-particle2 [{:keys [position velocity accel]} state]
     (let [x (:x position)
         y (:y position)]
@@ -65,7 +77,7 @@
 
 
 
- (nth  @newt/particles 0)
+;;  (nth  @newt/particles 0)
 
 (defn changespeed [emitterindex  speedX speedY]
 ;;   (swap! newt/emitters update-in [emitterindex :position] assoc :x 200)
@@ -89,10 +101,10 @@
   (swap! newt/emitters update-in [emitterindex] assoc :spread spread)
   )
 
-(changepos 2 600 0)
-(changespeed 0 0 (+ 200 (q/random 10)))
-(changeemitspeed 0 1)
-(changeemitspread 0 0)
+;; (changepos 2 600 0)
+;; (changespeed 0 0 (+ 200 (q/random 10)))
+;; (changeemitspeed 0 1)
+;; (changeemitspread 0 0)
 
 
-(get (nth @newt/emitters 0) :position)
+;; (get (nth @newt/emitters 0) :position)

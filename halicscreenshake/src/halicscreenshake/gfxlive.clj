@@ -7,7 +7,7 @@
 ;; (q/noise 1 1) ;; needs to be inside draw
 
 (tr)
-(def seq10 [0 0 1 0 1 0 1 0 1 0])
+(def seq10 [0 0 1 0 0 0 0 0 1 0])
 (def seq8  [0 1 0 0 0 0 0 1])
 (nth seq10 1)
 (def rot)
@@ -15,7 +15,7 @@
 
 rot
 
-(nth seq1 15)
+(nth seq10 5)
 
 (defn drawdud [state]
 ;;    (orangefill 128)
@@ -34,9 +34,9 @@ rot
                             )
 
                           (q/with-rotation [ rot (tr) 1 0 ]
-                            (q/stroke-weight (* (:left state) 10))
+                            (q/stroke-weight (* (:left state) 100))
                             (q/stroke 255 20 0 128)
-                            (q/box (* (:left state) 500))
+                            (q/box (* (:left state) 50000))
                             (q/line 0 0 1000 0)
                             (q/stroke 0 222 22 128)
 
