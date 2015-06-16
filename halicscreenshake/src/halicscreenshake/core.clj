@@ -1,5 +1,6 @@
 (ns halicscreenshake.core
-  (:require [overtone.live :as o])
+ (:require [overtone.live :as o])
+;;   (:require [overtone.core :as o])
   (:require [overtone.osc :as osc])
   (:require [quil.core :as q]
             [quil.helpers.calc :refer [mul-add]]

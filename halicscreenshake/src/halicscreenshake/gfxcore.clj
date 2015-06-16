@@ -24,8 +24,8 @@
 ;; ; start a server and create a client to talk with it
 (def Gserver (osc/osc-server GrPORT))
 ;; (osc/osc-close Gserver)
-;; (def GsPORT 4243)
-;; (def Gclient (osc/osc-client "192.168.2.2" GsPORT))
+(def GsPORT 4243)
+(def Gclient (osc/osc-client "192.168.2.22" GsPORT))
 
 
 
@@ -55,8 +55,8 @@
 
 
   (def Width 1280)
-(def Height 720)
-(def ratio (/ Width Height))
+  (def Height 720)
+  (def ratio (/ Width Height))
 
 
 (hex-str-to-dec "cb4b16")
@@ -90,7 +90,8 @@ solar-yellow
   (q/background 0)
   (q/stroke 255 255 0)
 ;;   (drawdud state)
-  (space state)
+;;   (drawP state)
+;;   (space state)
 ;;   (stuff)
 
 
