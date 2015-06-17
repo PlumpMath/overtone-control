@@ -1,6 +1,6 @@
 (ns halicscreenshake.core
- (:require [overtone.live :as o])
-;;   (:require [overtone.core :as o])
+
+  (:require [overtone.core :as o])
   (:require [overtone.osc :as osc])
   (:require [quil.core :as q]
             [quil.helpers.calc :refer [mul-add]]
@@ -16,7 +16,7 @@
 ;;start gfx-core
 ;;start sfx-core
 
-;; (connect-external-server 57110)
+(connect-external-server "192.168.0.8" 57110)
 
 
 

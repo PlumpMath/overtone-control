@@ -1,6 +1,6 @@
 (ns halicscreenshake.sfxcore
-  (:require [overtone.live :refer :all])
-;;   (:require [dodhalic.core :refer :all])
+;;   (:require [overtone.live :refer :all])
+  (:require [dodhalic.core :refer :all])
   (:require [overtone.osc :as osc])
         )
 ;; connect to the project using this namespace
@@ -21,7 +21,7 @@
 (def Sserver (osc/osc-server SrPORT))
 ;; (osc/osc-close Sserver)
 (def SsPORT 4242)
-(def Sclient (osc/osc-client "localhost" SsPORT))
+(def Sclient (osc/osc-client "192.168.0.8" SsPORT))
 
 
 
