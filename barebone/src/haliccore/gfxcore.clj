@@ -1,32 +1,41 @@
 (ns halic.core
   (:require [quil.core :as q]
             [quil.middleware :as m]
+            [quil.helpers.seqs :refer [range-incl perlin-noise-seq]]
             ))
-  (def width 594)
-  (def height 840)
+  (def width 280)
+  (def height 320)
+(control-bus-get schoolbus)
 
 (defn setup []
   (q/frame-rate 30)
 
 )
 
-
+(:r16 [])
+:r16
 (defn update [state]
   {
   :qbeat @(get-in q [:taps :beat])
   :pbeat @(get-in p [:taps :beat])
+  :asin @(get-in v [:taps :a])
+  :step32 (int (* @(get-in mod16 [:taps :step]) 16))
+;;   :saw16 (int (control-bus-get schoolbus))
+;;   :r16  (dotimes [n 10]
+;;           (assoc :r16 (buffer-get r n) n))
 ;;    :qa  (- (int @(get (:taps ext-sxf-gfx.core/v) :a)) 255)  ;; state needs to be updated, taps need to exist!
 ;;    :qb  (- (int @(get (:taps ext-sxf-gfx.core/v) :b)) 255)
 ;;    :qmod-env (@(get (:taps ext-sfx-gfx.core/qfm) :mod-env))
     })
 
 (defn draw [state]
-  (q/background 255)
+;;   (q/background (* (control-bus-get schoolbus) 255)
   (q/fill  (* (:qbeat state) 255))
-  (q/box 50)
-  (q/fill  (* (:pbeat state) 255))
-  (q/with-translation [150 100 100]
-    (q/box 100))
+;;   (q/box (* (control-bus-get schoolbus) 50))
+;;   (q/fill  (* (:pbeat state) 255))
+  (q/with-translation [(+ 150 (* 5 (/ (:step32 state) 5))) (+ 0 (/ (:asin state) 2)) 100]
+    (q/box 10))
+;;   (println (:asin state))
   )
 
 

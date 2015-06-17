@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [quil "2.2.2"]
+;;                  [org.skummet/clojure "1.7.0-RC1-r2"]
+                 [quil "2.2.6"]
 ;;                  [overtone "0.9.1"]
                  [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
                  ])
