@@ -5,21 +5,19 @@
             ))
   (def width 280)
   (def height 320)
-(control-bus-get schoolbus)
 
 (defn setup []
   (q/frame-rate 30)
 
 )
 
-(:r16 [])
-:r16
+
 (defn update [state]
   {
   :qbeat @(get-in q [:taps :beat])
-  :pbeat @(get-in p [:taps :beat])
-  :asin @(get-in v [:taps :a])
-  :step32 (int (* @(get-in mod16 [:taps :step]) 16))
+;;   :pbeat @(get-in p [:taps :beat])
+;;   :asin @(get-in v [:taps :a])
+;;   :step32 (int (* @(get-in mod16 [:taps :step]) 16))
 ;;   :saw16 (int (control-bus-get schoolbus))
 ;;   :r16  (dotimes [n 10]
 ;;           (assoc :r16 (buffer-get r n) n))
@@ -33,10 +31,10 @@
   (q/fill  (* (:qbeat state) 255))
 ;;   (q/box (* (control-bus-get schoolbus) 50))
 ;;   (q/fill  (* (:pbeat state) 255))
-  (q/with-translation [(+ 150 (* 5 (/ (:step32 state) 5))) (+ 0 (/ (:asin state) 2)) 100]
+;;   (q/with-translation [(+ 150 (* 5 (/ (:step32 state) 5))) (+ 0 (/ (:asin state) 2)) 100]
     (q/box 10))
 ;;   (println (:asin state))
-  )
+;;   )
 
 
 (q/defsketch tapdemo

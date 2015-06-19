@@ -6,10 +6,10 @@
   (q/fill 255)
 ;;   (println (perlin-noise-seq 10 0.1))
   (dotimes [n 25]
-    (let [ p (perlin-noise-seq 10 0.1)]
+;;     (let [ p (perlin-noise-seq 10 0.1)]
     (q/with-translation [0 (* n 10) 0]
       (dotimes [n 15]
-        (q/with-translation [(* p 10) 0 (-  0 (* n 10))]
+;;         (q/with-translation [(* p 10) 0 (-  0 (* n 10))]
 ;;       (q/with-translation [(* n 10) (+ 50 (* (* 2 (:qbeat state)) (:step32 state))) 10]
 ;;       (q/box (* (buffer-get r n) 50))
            (q/box 10))))))
@@ -19,9 +19,9 @@
 ;; (:step32 state
 
 
-(control-bus 1 "tester")
-(bus-monitor "my-bus")
-(bus? )
+;; (control-bus 1 "tester")
+;; (bus-monitor "my-bus")
+;; (bus? )
 
 ;; (control-bus-set! 1 300000)
 

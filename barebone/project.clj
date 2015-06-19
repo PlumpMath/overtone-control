@@ -6,6 +6,6 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
 ;;                  [org.skummet/clojure "1.7.0-RC1-r2"]
                  [quil "2.2.6"]
-;;                  [overtone "0.9.1"]
-                 [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
+                 [overtone "0.9.1"]
+;;                  [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
                  ])
