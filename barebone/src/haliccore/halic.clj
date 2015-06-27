@@ -1,41 +1,43 @@
 (ns halic.core
   (:require [overtone.osc :as osc])
   (:use [overtone.core]  ;;if this is core, will use external server!!! live will use internal server
-       ))
+        ))
 ;; (def superServerIP "78.22.74.30")
 ;; (def superServerIP "192.168.1.228")
-(def superServerIP "162.252.242.33")
-;; (def superServerIP "localhost")
-(connect-external-server superServerIP  4555)
+;; (def superServerIP "162.252.242.33")
+(def superServerIP "localhost")
+(def superServerPort 57110)
+;; (def superServerPort 4555)
+(connect-external-server superServerIP  superServerPort)
 ;; (defonce (connect-external-server "192.168.1.228"  4555))
 
 ;; (server-disconnected?)
 ;; ;;shared defs
-;; (def gfxOSCserverPort 4242)
-;; (def sndOSCserverPort 4243)
+(def gfxOSCserverPort 4242)
+(def sndOSCserverPort 4243)
 
 
-;; ;; gfx helpers
-;; (defn startgfxOSC [gfxIP ]
-;;   "bidirectional comms for halic gfx-sfx sync over OSC. e.g. (startgfxOSC '127.0.0.1')"
-;;   ;; ; start a server and create a client to talk with it
-;;   (def Sserver (osc/osc-server gfxOSCserverPort))
-;;   ;; (osc/osc-close Sserver)
-;;   (def Sclient (osc/osc-client gfxIP sndOSCserverPort))
+;; gfx helpers
+(defn startgfxOSC [gfxIP ]
+  "bidirectional comms for halic gfx-sfx sync over OSC. e.g. (startgfxOSC '127.0.0.1')"
+  ;; ; start a server and create a client to talk with it
+  (def Sserver (osc/osc-server gfxOSCserverPort))
+  ;; (osc/osc-close Sserver)
+  (def Sclient (osc/osc-client gfxIP sndOSCserverPort))
 
-;; )
+)
 
 
 
-;; ;; sfx helpers
-;; (defn startsndOSC [gfxIP ]
-;;   "bidirectional comms for halic gfx-sfx sync over OSC. e.g. (startsndOSC '127.0.0.1')"
-;;   ;; ; start a server and create a client to talk with it
-;;   (def Sserver (osc/osc-server sndOSCserverPort))
-;;   ;; (osc/osc-close Sserver)
-;;   (def Sclient (osc/osc-client gfxIP gfxOSCserverPort))
+;; sfx helpers
+(defn startsndOSC [gfxIP ]
+  "bidirectional comms for halic gfx-sfx sync over OSC. e.g. (startsndOSC '127.0.0.1')"
+  ;; ; start a server and create a client to talk with it
+  (def Sserver (osc/osc-server sndOSCserverPort))
+  ;; (osc/osc-close Sserver)
+  (def Sclient (osc/osc-client gfxIP gfxOSCserverPort))
 
-;; )
+)
 
 
 ;; (defn sendTick [bpm]
@@ -61,7 +63,7 @@
 
 (vvv)
 ;; kill it if you have to
-;; (kill vvv)
+(kill vvv)
 
 
 (def v (vvv))
@@ -96,7 +98,7 @@
 ;;  (kill qqq)
  (def q (qqq))
 @(get-in q [:taps :beat])
-;; (kill v)
+; (kill v)
 
 
  (def p (qqq 240))
@@ -111,7 +113,7 @@
 ;;  (scope-out 0)
 ;;  (show-graphviz-synth saw16)
  (def mod16 (saw16))
-(int (* @(get-in mod16 [:taps :step]) 16))
+(println  (int (* @(get-in mod16 [:taps :step]) 16)))
 ;; (definst sq [freq 120]
 ;;    (* (env-gen (perc 0.1 4.8) :action FREE)
 ;;      (square freq)))
@@ -126,7 +128,7 @@
 
 (beep3)
 
-(volume 0.5)
+(volume 0.0)
 ;; init algorave
 
 
@@ -143,8 +145,6 @@
 
 ;; (buffer-read r)
 ;;busses
-
-
 
 
 ;;pseudocode

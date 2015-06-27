@@ -7,5 +7,10 @@
 ;;                  [org.skummet/clojure "1.7.0-RC1-r2"]
                  [quil "2.2.6"]
                  [overtone "0.9.1"]
+                 [com.rpl/specter "0.5.4"] ;; testing this for filtering
 ;;                  [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
-                 ])
+
+                 ]
+;;  :plugins        [ [cider/cider-nrepl "0.8.1"]]
+
+                    )
