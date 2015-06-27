@@ -2,7 +2,8 @@
   (:use [clojure.core.match :only [match]]
 ;;         [overtone.inst sampled-piano]
         )
-  (:require [polynome.core :as poly]))
+  (:require [polynome.core :as poly])
+  )
 
 
 (defonce m (poly/init "/dev/tty.usbserial-m128-121"))

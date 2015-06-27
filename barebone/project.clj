@@ -9,7 +9,8 @@
                  [overtone "0.9.1"]
                  [com.rpl/specter "0.5.4"] ;; testing this for filtering
 ;;                  [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
-
+;;                 [polynome "0.3.0-SNAPSHOT"]
+                 [polynome "0.2.2"]
                  ]
 ;;  :plugins        [ [cider/cider-nrepl "0.8.1"]]
 

@@ -1,5 +1,7 @@
 (ns halic.core
   (:require [overtone.osc :as osc])
+
+  ;;(:use [overtone.polynome] :reload)
   (:use [overtone.core]  ;;if this is core, will use external server!!! live will use internal server
         ))
 ;; (def superServerIP "78.22.74.30")
@@ -8,7 +10,7 @@
 (def superServerIP "localhost")
 (def superServerPort 57110)
 ;; (def superServerPort 4555)
-(connect-external-server superServerIP  superServerPort)
+ (connect-external-server superServerIP  superServerPort)
 ;; (defonce (connect-external-server "192.168.1.228"  4555))
 
 ;; (server-disconnected?)
@@ -101,15 +103,20 @@
 ; (kill v)
 
 
- (def p (qqq 240))
 
-(volume 1)
+(def p (qqq 240))
+(def s (qqq 15))
+(volume 0)
  (defsynth saw16
    [bpm 120]
    (let  [a (/ bpm 60)
           _ (tap:kr :step 32 (lf-saw:kr a))]
      (out 0 (lf-saw:kr a))))
 
+(def ss (saw16 15))
+
+(ctl ss  :bpm 1)
+(ctl mod16 :bpm 10 )
 ;;  (scope-out 0)
 ;;  (show-graphviz-synth saw16)
  (def mod16 (saw16))
