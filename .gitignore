@@ -1,3 +1,7 @@
 
 halic/target/
 *.log
+
+barebone/src/monome_osc
+
+monome-osc/
