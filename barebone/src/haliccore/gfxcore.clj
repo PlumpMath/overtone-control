@@ -22,7 +22,7 @@
 
    ;;if controller is up
   ;; :bpm (int (+ 0 (* @(get-in bpm [:taps :step]) 8 ) ))
-   :mod16 ( mod16)
+   :mod16 (mod16)
 ;;   :saw16 (int (control-bus-get schoolbus))
 ;;   :r16  (dotimes [n 10]
 ;;           (assoc :r16 (buffer-get r n) n))
@@ -32,13 +32,21 @@
 
   )
 
+
+
+(updateM)
+(mod16)
+
 (defn draw [state]
+  (q/background 255 255 0)
 ;;   (q/background (* (control-bus-get schoolbus) 255)
 ;;  (q/fill  (* (:qbeat state) 255))
 ;;   (q/box (* (control-bus-get schoolbus) 50))
 ;;   (q/fill  (* (:pbeat state) 255))
 ;;   (q/with-translation [(+ 150 (* 5 (/ (:step32 state) 5))) (+ 0 (/ (:asin state) 2)) 100]
-  (q/box (* (:mod16 state) 10))
+  ;;(q/box (* (:mod16 state) 10))
+  (q/with-translation [ (+ 1000 (* 10 (mod16))) 100 100]
+    (q/box 10))
   ;;   (println (:asin state))
   ;;   )
 ;;  (poly/led m 12 1 (int (:qbeat state)))

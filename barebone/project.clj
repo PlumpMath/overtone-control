@@ -12,6 +12,8 @@
 ;;                 [polynome "0.3.0-SNAPSHOT"]
                  [polynome "0.2.2"]
                  [org.clojure/core.match "0.3.0-alpha4"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+
                  ]
 ;;  :plugins        [ [cider/cider-nrepl "0.8.1"]]
 
