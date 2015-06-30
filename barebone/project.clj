@@ -11,6 +11,7 @@
 ;;                  [overtone "0.10-SNAPSHOT"] ;; trying latest snapshot version
 ;;                 [polynome "0.3.0-SNAPSHOT"]
                  [polynome "0.2.2"]
+                 [org.clojure/core.match "0.3.0-alpha4"]
                  ]
 ;;  :plugins        [ [cider/cider-nrepl "0.8.1"]]
 

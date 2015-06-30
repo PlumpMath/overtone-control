@@ -185,3 +185,45 @@
 ;; (getcon schoolbus)
 
 ;;         (audio-bus-monitor 0)
+
+;; 0 - setup environment
+(defn setupenv []
+  (def superServerIP "localhost")
+  (def superServerPort 57110)
+  )
+(setupenv)
+
+;; 1 - connect to supercollider
+( connect-external-server superServerIP  superServerPort)
+
+(connected)
+;; 2 - define & start central bpm-counter
+(defsynth bpm
+   [bpm 120]
+   (let  [a (/ bpm 60)
+          _ (tap:kr :step 60 (lf-saw:kr a))]
+     (out 100 (lf-saw:kr a)))) ;; put the control synths on channel 100 & on
+
+(def b (bpm 120))
+(defn mod16 []
+  (int (* 16 (/ (+ @(get-in b [:taps :step]) 1) 2 ))))
+
+
+(println  ( mod16))
+
+
+
+ ;; 3 - check if monome attached
+
+;;if monome connected
+;;eval all fucntions in ctrl.core namespace
+
+
+ ;; 4 - prompt to start gfxcore
+
+;;start gfxcore, update state
+
+
+
+
+;; 5 - switch to gfxlive
