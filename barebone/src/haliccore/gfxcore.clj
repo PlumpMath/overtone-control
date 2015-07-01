@@ -4,11 +4,10 @@
             [quil.helpers.seqs :refer [range-incl perlin-noise-seq seq->stream cycle-between]]
 ))
   (def width 1440)
-  (def height 580)
+  (def height 980)
 
 (defn setup []
   (q/frame-rate 30)
-
 )
 
 
@@ -32,25 +31,10 @@
 
   )
 
-
-
-(updateM)
-(mod16)
-
 (defn draw [state]
   (q/background 255 255 0)
-;;   (q/background (* (control-bus-get schoolbus) 255)
-;;  (q/fill  (* (:qbeat state) 255))
-;;   (q/box (* (control-bus-get schoolbus) 50))
-;;   (q/fill  (* (:pbeat state) 255))
-;;   (q/with-translation [(+ 150 (* 5 (/ (:step32 state) 5))) (+ 0 (/ (:asin state) 2)) 100]
-  ;;(q/box (* (:mod16 state) 10))
   (q/with-translation [ (+ 1000 (* 10 (mod16))) 100 100]
     (q/box 10))
-  ;;   (println (:asin state))
-  ;;   )
-;;  (poly/led m 12 1 (int (:qbeat state)))
-;;  (updateM)
  )
 
 (q/defsketch tapdemo
