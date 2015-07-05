@@ -27,6 +27,9 @@
 (defn mod16 []
   (int (* 16 (/ (+ @(get-in b [:taps :step]) 1) 2 ))))
 
+(defn mod4 []
+  (int (/ (mod16) 4)))
+
  ;; 3 - check if monome attached
 
 

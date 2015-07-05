@@ -7,22 +7,31 @@
 
 
 
-(def r [0 0 2 1 0 1 2 1 1 2])
+(def r [1 1 2 1 0 1 2 1 1 2])
 
-
+(q/random 1 100)
 
 ;; ;; (q/perlin-noise-seq 1 0.1)
 (defn draw [state]
-
- ;;  (q/background (* (:step32  state) 111) 20 200)
-  (q/with-translation [(* 10 (:mod16 state)) 150 0 ]
+  (if (=  1 ( mod4))
+    (q/background (* (:mod16  state) 0) 20 200))
+  (q/with-translation [(* 10 (:mod16 state)) (* (mod4) 150) 0 ]
     (dotimes [n 8]
       (if (= (r n) 1)
         (q/with-translation [(* n 55) 50 0]
-          (q/box 50)
-          )
-        )
-      )))
+          ( dud)))
+      (if (=  (r n) 2 )
+        (q/with-translation [0 (* n 200) 0]
+          (dud)
+          ))))
+
+  (defn dud []
+
+    (q/stroke 0)
+    (q/box 50)
+    (q/stroke 255)
+    (q/line  (q/random  1000) (q/random  1000) (q/random  100) (q/random  100))))
+
 
 
 
@@ -72,27 +81,27 @@
 
 
 
-  ;; (:step32 state
+    ;; (:step32 state
 
 
-  ;; (control-bus 1 "tester")
-  ;; (bus-monitor "my-bus")
-  ;; (bus? )
+    ;; (control-bus 1 "tester")
+    ;; (bus-monitor "my-bus")
+    ;; (bus? )
 
-  ;; (control-bus-set! 1 300000)
+    ;; (control-bus-set! 1 300000)
 
-  ;; (control-bus-get 1)
-
-
-
-  ;;stuff to test
-
-  ;; share data
-  ;;   busses
-  ;;   buffer
-  ;;   synths
+    ;; (control-bus-get 1)
 
 
-  ;;audio
-  ;;iedere synth op aparte bussen naar server sturen
-  ;; pas op server mixen (POC objecten op scherm laten bewegen enkel als er audio op een bepaalde bus is)
+
+    ;;stuff to test
+
+    ;; share data
+    ;;   busses
+    ;;   buffer
+    ;;   synths
+
+
+    ;;audio
+    ;;iedere synth op aparte bussen naar server sturen
+    ;; pas op server mixen (POC objecten op scherm laten bewegen enkel als er audio op een bepaalde bus is)
