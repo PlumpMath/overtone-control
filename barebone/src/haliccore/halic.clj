@@ -6,12 +6,21 @@
             )
   ;;(:use [overtone.polynome])
   (:use [overtone.core]  ;;if this is core, will use external server!!! live will use internal server
+<<<<<<< Updated upstream
         ))
 ;; 0 - setup environment
 (def superServerIP "localhost")
 (def superServerPort 57110)
 (def width 1440)
 (def height 980)
+=======
+       ))
+;; (def superServerIP "78.22.74.30")
+;; (def superServerIP "192.168.1.228")
+;; (def superServerIP "localhost")
+;; (connect-external-server superServerIP  57110)
+(defonce rpi (connect-external-server "192.168.1.228"  4555))
+>>>>>>> Stashed changes
 
 ;; 1 - connect to supercollider
 ( connect-external-server superServerIP  superServerPort)
